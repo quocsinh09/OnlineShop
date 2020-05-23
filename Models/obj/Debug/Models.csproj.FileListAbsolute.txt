@@ -1,0 +1,14 @@
+c:\users\quocs\documents\visual studio 2013\Projects\OnlineShop\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+c:\users\quocs\documents\visual studio 2013\Projects\OnlineShop\Models\bin\Debug\Models.dll.config
+c:\users\quocs\documents\visual studio 2013\Projects\OnlineShop\Models\bin\Debug\Models.dll
+c:\users\quocs\documents\visual studio 2013\Projects\OnlineShop\Models\bin\Debug\Models.pdb
+c:\users\quocs\documents\visual studio 2013\Projects\OnlineShop\Models\bin\Debug\EntityFramework.dll
+c:\users\quocs\documents\visual studio 2013\Projects\OnlineShop\Models\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\quocs\documents\visual studio 2013\Projects\OnlineShop\Models\bin\Debug\EntityFramework.xml
+c:\users\quocs\documents\visual studio 2013\Projects\OnlineShop\Models\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\quocs\documents\visual studio 2013\Projects\OnlineShop\Models\obj\Debug\Models.dll
+c:\users\quocs\documents\visual studio 2013\Projects\OnlineShop\Models\obj\Debug\Models.pdb
+C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\Models\bin\Debug\PagedList.dll
+C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\Models\bin\Debug\PagedList.Mvc.dll
+C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\Models\bin\Debug\PagedList.xml
+C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\Models\bin\Debug\PagedList.Mvc.xml

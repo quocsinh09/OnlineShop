@@ -1,0 +1,407 @@
+﻿
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    var admin = Session["Admin"] as Models.EF.User;
+}
+
+
+@section username{
+    @admin.Name
+}
+@section username_dropdown{
+    @admin.Name
+}
+@section email{
+    @admin.Email
+}
+<section class="statistic statistic2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-3">
+                <div class="statistic__item statistic__item--green">
+                    <h2 class="number">@Model.numberOfMember()</h2>
+                    <span class="desc">thành viên đăng ký</span>
+                    <div class="icon">
+                        <i class="zmdi zmdi-account-o"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="statistic__item statistic__item--orange">
+                    <h2 class="number">@Model.numberOfOrder()</h2>
+                    <span class="desc">sản phẩm đã bán</span>
+                    <div class="icon">
+                        <i class="zmdi zmdi-shopping-cart"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="statistic__item statistic__item--blue">
+                    <h2 class="number">@Model.thisWeek()</h2>
+                    <span class="desc">sản phẩm tuần này</span>
+                    <div class="icon">
+                        <i class="zmdi zmdi-calendar-note"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="statistic__item statistic__item--red">
+                    <h2 class="number">@Model.totalEarning()</h2>
+                    <span class="desc">Tổng doanh số </span>
+                    <div class="icon">
+                        <i class="zmdi zmdi-money"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="row">
+    <!--San pham gan day-->
+    <div class="col-lg-9">
+        <div class="table-responsive table--no-card m-b-30">
+            <table class="table table-borderless table-striped table-earning">
+                <thead>
+                    <tr>
+                        <th>date</th>
+                        <th>order ID</th>
+                        <th>name</th>
+                        <th class="text-right">price</th>
+                        <th class="text-right">quantity</th>
+                        <th class="text-right">total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2018-09-29 05:57</td>
+                        <td>100398</td>
+                        <td>iPhone X 64Gb Grey</td>
+                        <td class="text-right">$999.00</td>
+                        <td class="text-right">1</td>
+                        <td class="text-right">$999.00</td>
+                    </tr>
+                    <tr>
+                        <td>2018-09-28 01:22</td>
+                        <td>100397</td>
+                        <td>Samsung S8 Black</td>
+                        <td class="text-right">$756.00</td>
+                        <td class="text-right">1</td>
+                        <td class="text-right">$756.00</td>
+                    </tr>
+                    <tr>
+                        <td>2018-09-27 02:12</td>
+                        <td>100396</td>
+                        <td>Game Console Controller</td>
+                        <td class="text-right">$22.00</td>
+                        <td class="text-right">2</td>
+                        <td class="text-right">$44.00</td>
+                    </tr>
+                    <tr>
+                        <td>2018-09-26 23:06</td>
+                        <td>100395</td>
+                        <td>iPhone X 256Gb Black</td>
+                        <td class="text-right">$1199.00</td>
+                        <td class="text-right">1</td>
+                        <td class="text-right">$1199.00</td>
+                    </tr>
+                    <tr>
+                        <td>2018-09-25 19:03</td>
+                        <td>100393</td>
+                        <td>USB 3.0 Cable</td>
+                        <td class="text-right">$10.00</td>
+                        <td class="text-right">3</td>
+                        <td class="text-right">$30.00</td>
+                    </tr>
+                    <tr>
+                        <td>2018-09-29 05:57</td>
+                        <td>100392</td>
+                        <td>Smartwatch 4.0 LTE Wifi</td>
+                        <td class="text-right">$199.00</td>
+                        <td class="text-right">6</td>
+                        <td class="text-right">$1494.00</td>
+                    </tr>
+                    <tr>
+                        <td>2018-09-24 19:10</td>
+                        <td>100391</td>
+                        <td>Camera C430W 4k</td>
+                        <td class="text-right">$699.00</td>
+                        <td class="text-right">1</td>
+                        <td class="text-right">$699.00</td>
+                    </tr>
+                    <tr>
+                        <td>2018-09-22 00:43</td>
+                        <td>100393</td>
+                        <td>USB 3.0 Cable</td>
+                        <td class="text-right">$10.00</td>
+                        <td class="text-right">3</td>
+                        <td class="text-right">$30.00</td>
+                    </tr>
+                    <tr>
+                        <td>2018-09-22 00:43</td>
+                        <td>100393</td>
+                        <td>USB 3.0 Cable</td>
+                        <td class="text-right">$10.00</td>
+                        <td class="text-right">3</td>
+                        <td class="text-right">$30.00</td>
+                    </tr>
+                    <tr>
+                        <td>2018-09-22 00:43</td>
+                        <td>100393</td>
+                        <td>USB 3.0 Cable</td>
+                        <td class="text-right">$10.00</td>
+                        <td class="text-right">3</td>
+                        <td class="text-right">$30.00</td>
+                    </tr>
+                    <tr>
+                        <td>2018-09-22 00:43</td>
+                        <td>100393</td>
+                        <td>USB 3.0 Cable</td>
+                        <td class="text-right">$10.00</td>
+                        <td class="text-right">3</td>
+                        <td class="text-right">$30.00</td>
+                    </tr>
+                    <tr>
+                        <td>2018-09-22 00:43</td>
+                        <td>100393</td>
+                        <td>USB 3.0 Cable</td>
+                        <td class="text-right">$10.00</td>
+                        <td class="text-right">3</td>
+                        <td class="text-right">$30.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--Doanh thu 12 thang-->
+    <div class="col-lg-3">
+        <div class="au-card au-card--bg-blue au-card-top-countries m-b-30">
+            <div class="au-card-inner">
+                <div class="table-responsive">
+                    <table class="table table-top-countries">
+                        <tbody>
+                            <tr>
+                                <td>Tháng 1</td>
+                                <td class="text-right">$119,366.96</td>
+                            </tr>
+                            <tr>
+                                <td>Tháng 2</td>
+                                <td class="text-right">$70,261.65</td>
+                            </tr>
+                            <tr>
+                                <td>Tháng 3</td>
+                                <td class="text-right">$46,399.22</td>
+                            </tr>
+                            <tr>
+                                <td>Tháng 4</td>
+                                <td class="text-right">$35,364.90</td>
+                            </tr>
+                            <tr>
+                                <td>Tháng 5</td>
+                                <td class="text-right">$20,366.96</td>
+                            </tr>
+                            <tr>
+                                <td>Tháng 6</td>
+                                <td class="text-right">$10,366.96</td>
+                            </tr>
+                            <tr>
+                                <td>Tháng 7</td>
+                                <td class="text-right">$5,366.96</td>
+                            </tr>
+                            <tr>
+                                <td>Tháng 8</td>
+                                <td class="text-right">$1639.32</td>
+                            </tr>
+                            <tr>
+                                <td>Tháng 9</td>
+                                <td class="text-right">$1639.32</td>
+                            </tr>
+                            <tr>
+                                <td>Tháng 10</td>
+                                <td class="text-right">$1639.32</td>
+                            </tr>
+                            <tr>
+                                <td>Tháng 11</td>
+                                <td class="text-right">$1639.32</td>
+                            </tr>
+                            <tr>
+                                <td>Tháng 12</td>
+                                <td class="text-right">$1639.32</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Lịch sử -->
+<div class="row">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h3 class="myfont">Các hoạt động gần đây </h3>
+
+        <div class="table-responsive table-responsive-data2">
+            <table class="table table-data2">
+                <thead>
+                    <tr>
+                        <th>
+                            <label class="au-checkbox">
+                                <input type="checkbox">
+                                <span class="au-checkmark"></span>
+                            </label>
+                        </th>
+                        <th>name</th>
+                        <th>email</th>
+                        <th>description</th>
+                        <th>date</th>
+                        <th>status</th>
+                        <th>price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tr-shadow">
+                        <td>
+                            <label class="au-checkbox">
+                                <input type="checkbox">
+                                <span class="au-checkmark"></span>
+                            </label>
+                        </td>
+                        <td>Lori Lynch</td>
+                        <td>
+                            <span class="block-email">lori@example.com</span>
+                        </td>
+                        <td class="desc">Samsung S8 Black</td>
+                        <td>2018-09-27 02:12</td>
+                        <td>
+                            <span class="status--process">Processed</span>
+                        </td>
+                        <td>$679.00</td>
+                        <td>
+                            <div class="table-data-feature">
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Send">
+                                    <i class="zmdi zmdi-mail-send"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="More">
+                                    <i class="zmdi zmdi-more"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="spacer"></tr>
+                    <tr class="tr-shadow">
+                        <td>
+                            <label class="au-checkbox">
+                                <input type="checkbox">
+                                <span class="au-checkmark"></span>
+                            </label>
+                        </td>
+                        <td>Lori Lynch</td>
+                        <td>
+                            <span class="block-email">john@example.com</span>
+                        </td>
+                        <td class="desc">iPhone X 64Gb Grey</td>
+                        <td>2018-09-29 05:57</td>
+                        <td>
+                            <span class="status--process">Processed</span>
+                        </td>
+                        <td>$999.00</td>
+                        <td>
+                            <div class="table-data-feature">
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Send">
+                                    <i class="zmdi zmdi-mail-send"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="More">
+                                    <i class="zmdi zmdi-more"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="spacer"></tr>
+                    <tr class="tr-shadow">
+                        <td>
+                            <label class="au-checkbox">
+                                <input type="checkbox">
+                                <span class="au-checkmark"></span>
+                            </label>
+                        </td>
+                        <td>Lori Lynch</td>
+                        <td>
+                            <span class="block-email">lyn@example.com</span>
+                        </td>
+                        <td class="desc">iPhone X 256Gb Black</td>
+                        <td>2018-09-25 19:03</td>
+                        <td>
+                            <span class="status--denied">Denied</span>
+                        </td>
+                        <td>$1199.00</td>
+                        <td>
+                            <div class="table-data-feature">
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Send">
+                                    <i class="zmdi zmdi-mail-send"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="More">
+                                    <i class="zmdi zmdi-more"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="spacer"></tr>
+                    <tr class="tr-shadow">
+                        <td>
+                            <label class="au-checkbox">
+                                <input type="checkbox">
+                                <span class="au-checkmark"></span>
+                            </label>
+                        </td>
+                        <td>Lori Lynch</td>
+                        <td>
+                            <span class="block-email">doe@example.com</span>
+                        </td>
+                        <td class="desc">Camera C430W 4k</td>
+                        <td>2018-09-24 19:10</td>
+                        <td>
+                            <span class="status--process">Processed</span>
+                        </td>
+                        <td>$699.00</td>
+                        <td>
+                            <div class="table-data-feature">
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Send">
+                                    <i class="zmdi zmdi-mail-send"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="More">
+                                    <i class="zmdi zmdi-more"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>

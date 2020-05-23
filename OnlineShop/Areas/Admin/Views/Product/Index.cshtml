@@ -1,0 +1,117 @@
+﻿@model PagedList.IPagedList<Models.EF.Product>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "../Shared/_Layout.cshtml";
+    var admin = Session["Admin"] as Models.EF.User;
+}
+@section username{
+    @admin.Name
+}
+@section username_dropdown{
+    @admin.Name
+}
+@section email{
+    @admin.Email
+}
+
+    <div class="container-fluid">
+    <!-- Sản phẩm đang bán -->
+    <div class="col-md-12">
+        <!-- Button -->
+        <div class="table-data__tool">
+            <div class="table-data__tool-right">
+                
+                <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                    <i class="zmdi zmdi-plus"></i>@Html.ActionLink("Thêm sản phẩm", "Create", "Product")
+                </button>
+            </div>
+        </div>
+        <!-- Kết thúc Button -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bgc-white bd bdrs-3 p-20 mB-20 ">
+                    <h4 class="c-grey-900 mB-20"> Danh sách sản phẩm </h4>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Mã sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Trong kho</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.ProductCode</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Price</td>
+                                    <td>@item.Quanity</td>
+                                    <td>
+                                        <a href="/Admin/Product/Edit/@item.ProductCode">Sửa</a>
+                                         |
+                                            @Ajax.ActionLink("Xoá", "Delete", new { @id = item.ProductCode }, new AjaxOptions
+                                            {
+                                                Confirm = "Bạn có muốn sản phẩm này không?",
+                                                OnComplete = "$('#row_" + @item.ProductCode + "').remove()",
+                                                HttpMethod = "Delete"
+                                            })
+                                    </td>
+
+                                    
+                                </tr>
+                            }
+                            
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
+                </div>
+            </div>
+        </div>
+        <!-- Kết thúc Sản phẩm đang bán -->
+        <div class="space"></div>
+        <!-- Sản phẩm bán chạy -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bgc-white bd bdrs-3 p-20 mB-20">
+                    <h4 class="c-grey-900 mB-20">SẢN PHẨM BÁN CHẠY</h4>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col" class="de-muc">Sản phẩm</th>
+                                <th scope="col" class="de-muc">Số lượng</th>
+                                <th scope="col" class="de-muc">Tổng giá trị</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Máy lọc nước</td>
+                                <td class="center">5.050</td>
+                                <td class="center">1.001.114 VNĐ</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Máy lọc nước</td>
+                                <td class="center">5.050</td>
+                                <td class="center">1.001.114 VNĐ</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Máy lọc nước</td>
+                                <td class="center">5.050</td>
+                                <td class="center">1.001.114 VNĐ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Kết thúc Sản phẩm bán chạy -->
+    </div>
+</div>

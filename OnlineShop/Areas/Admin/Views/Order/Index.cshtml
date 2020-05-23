@@ -1,0 +1,265 @@
+﻿@model PagedList.IPagedList<Models.ViewModel.OrderViewModel>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var admin = Session["Admin"] as Models.EF.User;
+}
+@section username{
+    @admin.Name
+}
+@section username_dropdown{
+    @admin.Name
+}
+@section email{
+    @admin.Email
+}
+
+<div class="container-fluid">
+
+    <!-- Đơn hàng -->
+
+    <div class="col-md-12">
+
+        <div class="table-responsive m-b-40">
+            <table class="table table-bordered table-data3">
+                <thead >
+                    <tr>
+                        <th style="width:200px;line-height:30px;white-space:nowrap;text-align:center;">Mã đơn hàng</th>
+                        <th style="width: 185px; line-height:30px; white-space:nowrap">Tên khách hàng</th>
+                        <th style="line-height:30px; white-space:nowrap;text-align: center">Ngày đặt</th>
+                        <th style="line-height:30px; white-space:nowrap;text-align: center">Ngày gửi hàng</th>
+                        <th style="width:500px;line-height:30px; white-space:nowrap;text-align: center">Địa chỉ</th>
+                        <th style="line-height:30px; white-space:nowrap;text-align: center">Trạng thái</th>
+                        <th style="padding:5px;width: 130px;line-height:30px;text-align:center">Hình thức thanh toán</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td data-toggle="modal" data-target="#@item.ProductCode">
+                                @item.ID
+                                <!--Modal-->
+                                <div class="modal fade" id="@item.ProductCode" data-backdrop="static" data-keyboard="false">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="card-title">Thông tin sản phẩm</h4>
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="card">
+
+                                                            <div class="card-body">
+                                                                <form>
+                                                                    <div class="row">
+                                                                        <div class="col-md-5 pr-1">
+                                                                            <div class="form-group">
+                                                                                <label>Tên sản phẩm</label>
+                                                                                <input type="text" class="form-control" disabled="" placeholder="Tên sản phẩm" value="@item.ProductName" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3 px-1">
+                                                                            <div class="form-group">
+                                                                                <label>Mã sản phẩm</label>
+                                                                                <input type="number" class="form-control" placeholder="Mã sản phẩm" value="@item.ProductCode" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4 pl-1">
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputEmail1">Mã sản phẩm</label>
+                                                                                <input type="number" class="form-control" placeholder="Mã sản phẩm" value="@item.ProductCode" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 pr-1">
+                                                                            <div class="form-group">
+                                                                                <label>Số lượng</label>
+                                                                                <input type="number" class="form-control" placeholder="Số lượng" value="@item.Amount" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6 pl-1">
+                                                                            <div class="form-group">
+                                                                                <label>Đơn giá(VNĐ/Cái)</label>
+                                                                                <input type="number" class="form-control" placeholder="Giá" value="@item.Price" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label>Thành tiền</label>
+                                                                                <input type="number" class="form-control" placeholder="Thành tiền" value="@item.Amount*@item.Price" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4 pr-1">
+                                                                            <div class="form-group">
+                                                                                <label>Ngày đăng ký</label>
+                                                                                <input type="text" class="form-control" placeholder="Ngày đăng ký" value="@item.CreatedDate" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4 px-1">
+                                                                            <div class="form-group">
+                                                                                <label>Ngày xác nhận</label>
+                                                                                <input type="text" class="form-control" placeholder="Ngày xác nhận" value="@item.ModifiedDate" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4 pl-1">
+                                                                            <div class="form-group">
+                                                                                <label>Chưa thanh toán</label>
+                                                                                <input type="number" class="form-control" placeholder="Chưa thanh toán" value="@item.AmountMissOrder" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <!--Ket thuc modal-->
+                            </td>
+                            <td data-toggle="modal" data-target="#@item.ID">
+                                @item.Name
+
+                                <!--Modal-->
+                                 <div class="modal fade" id="@item.ID" data-backdrop="static" data-keyboard="false">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="card-title">Thông tin khách hàng</h4>
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="card">
+
+                                                            <div class="card-body">
+                                                                <form>
+                                                                    <div class="row">
+                                                                        <div class="col-md-5 pr-1">
+                                                                            <div class="form-group">
+                                                                                <label>Họ và tên</label>
+                                                                                <input type="text" class="form-control" disabled="" placeholder="Họ và tên" value="@item.Name" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3 px-1">
+                                                                            <div class="form-group">
+                                                                                <label>Sinh nhật</label>
+                                                                                <input type="datetime" class="form-control" placeholder="Sinh nhật" value="@item.BirthDay" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4 pl-1">
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputEmail1">Mã khách hàng</label>
+                                                                                <input type="text" class="form-control" placeholder="Mã khách hàng" value="@item.CustomerID" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 pr-1">
+                                                                            <div class="form-group">
+                                                                                <label>Email</label>
+                                                                                <input type="email" class="form-control" placeholder="Email" value="@item.Email" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6 pl-1">
+                                                                            <div class="form-group">
+                                                                                <label>Số điện thoại</label>
+                                                                                <input type="number" class="form-control" placeholder="Số điện thoại" value="@item.Mobile" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label>Địa chỉ</label>
+                                                                                <input type="text" class="form-control" placeholder="Địa chỉ" value="@item.Address" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4 pr-1">
+                                                                            <div class="form-group">
+                                                                                <label>Ngày đăng ký</label>
+                                                                                <input type="text" class="form-control" placeholder="Ngày đăng ký" value="@item.CreatedDate" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4 px-1">
+                                                                            <div class="form-group">
+                                                                                <label>Ngày xác nhận</label>
+                                                                                <input type="text" class="form-control" placeholder="Ngày xác nhận" value="@item.ModifiedDate" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4 pl-1">
+                                                                            <div class="form-group">
+                                                                                <label>Chưa thanh toán</label>
+                                                                                <input type="number" class="form-control" placeholder="Chưa thanh toán" value="@item.AmountMissOrder" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="card card-user">
+                                                            <div class="card-image">
+                                                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="author">
+                                                                    <a href="#">
+                                                                        <img class="avatar border-gray" src="~/Assets/images/icon/avatar-04.jpg" alt="...">
+                                                                        <h5 class="title">item.Name </h5>
+                                                                    </a>
+                                                                    <p class="description">
+                                                                        @item.Email
+                                                                    </p>
+                                                                </div>
+                                                                <p class="description text-center">
+                                                                    "Lamborghini Mercy
+                                                                    <br> Your chick she so thirsty
+                                                                    <br> I'm in that two seat Lambo"
+                                                                </p>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Ket thuc modal-->
+                            </td>
+                            <td> @item.OrderDate </td>
+                            <td>@item.ShippedDate</td>
+                            <td>@item.Address</td>
+                            <td class="process">@item.Status</td>
+                            <td>@item.CostBy</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
+        </div>
+    </div>
+    <!-- Kết thúc Đơn hàng ../User/MemberAccount?page=@*@item.customerID*@-->
+</div>  

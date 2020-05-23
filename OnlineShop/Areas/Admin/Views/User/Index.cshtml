@@ -1,0 +1,93 @@
+﻿@model PagedList.IPagedList<Models.EF.User>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Người dùng";
+    Layout = "../Shared/_Layout.cshtml";
+    var admin = Session["Admin"] as Models.EF.User;
+}
+@section username{
+    @admin.Name
+}
+@section username_dropdown{
+    @admin.Name
+}
+@section email{
+    @admin.Email
+}
+
+
+<div class="section__content section__content--p30">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- USER DATA-->
+                <div class="user-data m-b-30">
+                    <h3 class="title-3 m-b-30">
+                        <i class="zmdi zmdi-account-calendar"></i>Dữ liệu tài khoản
+                    </h3>
+                    <div class="table-responsive table-data">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td id="img-account"> </td>
+                                    <td class="de-muc">Tên tài khoản</td>
+                                    <td class="de-muc">Loại</td>
+                                    <td class="de-muc">Quyền hạn</td>
+                                    <td class="de-muc">Liên lạc</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td id="img-account">
+                                        <img class="account" src="~/Assets/images/icon/avatar-01.jpg" alt="account">
+                                    </td>
+                                    <td>
+                                        <div class="table-data__info">
+                                            <h6>@item.Name</h6>
+                                            <span>
+                                                <a>@item.Email</a>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="role admin">@item.Status</span>
+                                    </td>
+                                    <td>
+                                        <div class="rs-select2--trans rs-select2--sm">
+                                            <select class="js-select2" name="property">
+                                                <option selected="selected">Toàn quyền</option>
+                                                <option value="">Xem</option>
+                                                <option value="">Đăng</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                    </td>
+                                    <td>@item.Mobile</td>
+                                    <td>
+                                        <div class="table-data-feature">
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa">
+                                                <i class="zmdi zmdi-edit"></i>
+                                            </button>
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xóa">
+                                                <i class="zmdi zmdi-delete"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="user-data__footer">
+                        <button class="au-btn au-btn-load">load more</button>
+                    </div>
+                </div>
+                <!-- END USER DATA-->
+            </div>
+        </div>
+    </div>
+</div>
