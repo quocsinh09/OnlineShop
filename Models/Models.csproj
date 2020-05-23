@@ -64,6 +64,7 @@
     <Compile Include="DAO\OrderInfoDAO.cs" />
     <Compile Include="DAO\ProductDAO.cs" />
     <Compile Include="DAO\UserDAO.cs" />
+    <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="EF\OnlineShopDbContext.cs" />
     <Compile Include="EF\Order.cs" />

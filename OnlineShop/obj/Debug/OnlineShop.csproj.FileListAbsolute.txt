@@ -58,7 +58,4 @@ C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\OnlineShop\bin\P
 C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\OnlineShop\bin\PagedList.Mvc.dll
 C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\OnlineShop\bin\PagedList.xml
 C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\OnlineShop\bin\PagedList.Mvc.xml
-C:\Users\quocs\Documents\Visual Studio 2013\Projects\OnlineShop\OnlineShop\bin\Models.dll.config
-C:\Users\quocs\Documents\Visual Studio 2013\Projects\OnlineShop\OnlineShop\obj\Debug\OnlineShop.csprojAssemblyReference.cache
-C:\Users\quocs\Documents\Visual Studio 2013\Projects\OnlineShop\OnlineShop\obj\Debug\OnlineShop.csproj.CoreCompileInputs.cache
-C:\Users\quocs\Documents\Visual Studio 2013\Projects\OnlineShop\OnlineShop\obj\Debug\OnlineShop.csproj.CopyComplete
+C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\OnlineShop\obj\Debug\OnlineShop.csprojResolveAssemblyReference.cache

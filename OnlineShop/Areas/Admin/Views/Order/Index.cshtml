@@ -22,9 +22,9 @@
 
     <div class="col-md-12">
 
-        <div class="table-responsive m-b-40">
-            <table class="table table-bordered table-data3">
-                <thead >
+        <div class="table-responsive table--no-card m-b-30">
+            <table class="table table-borderless table-striped table-earning">
+                <thead>
                     <tr>
                         <th style="width:200px;line-height:30px;white-space:nowrap;text-align:center;">Mã đơn hàng</th>
                         <th style="width: 185px; line-height:30px; white-space:nowrap">Tên khách hàng</th>
@@ -129,13 +129,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                                            <!--Ket thuc modal-->
+                                <!--Ket thuc modal-->
                             </td>
                             <td data-toggle="modal" data-target="#@item.ID">
                                 @item.Name
 
                                 <!--Modal-->
-                                 <div class="modal fade" id="@item.ID" data-backdrop="static" data-keyboard="false">
+                                <div class="modal fade" id="@item.ID" data-backdrop="static" data-keyboard="false">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -225,17 +225,13 @@
                                                                 <div class="author">
                                                                     <a href="#">
                                                                         <img class="avatar border-gray" src="~/Assets/images/icon/avatar-04.jpg" alt="...">
-                                                                        <h5 class="title">item.Name </h5>
+                                                                        <h5 class="title">@item.Name </h5>
                                                                     </a>
                                                                     <p class="description">
                                                                         @item.Email
                                                                     </p>
                                                                 </div>
-                                                                <p class="description text-center">
-                                                                    "Lamborghini Mercy
-                                                                    <br> Your chick she so thirsty
-                                                                    <br> I'm in that two seat Lambo"
-                                                                </p>
+
                                                             </div>
 
                                                         </div>
@@ -254,12 +250,12 @@
                             <td class="process">@item.Status</td>
                             <td>@item.CostBy</td>
                         </tr>
-                    }
+                        }
 
-                </tbody>
-            </table>
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
-        </div>
+                    </tbody>
+                </table>
+                
+            </div>@Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
     </div>
     <!-- Kết thúc Đơn hàng ../User/MemberAccount?page=@*@item.customerID*@-->
 </div>  
