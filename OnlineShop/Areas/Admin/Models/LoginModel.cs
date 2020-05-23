@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,9 +10,11 @@ namespace OnlineShop.Areas.Admin.Models
     {
         
         public Guid Id { get; set; }
-        [Required(ErrorMessage = "Moi nhap ....")]
+        [Required(ErrorMessage = "Mời nhập tài khoản")]
         public string UserName { get; set; }
-        [Required(ErrorMessage = "pass.....")]
+
+        [StringLength(50, ErrorMessage = "Mật khẩu phải có tối thiểu {2} ký tự và tối đa {0} ký tự" , MinimumLength = 6)]
+        [Required(ErrorMessage = "Vui lòng điền mật khẩu")]
         public string Password { get; set; }
     }
 }

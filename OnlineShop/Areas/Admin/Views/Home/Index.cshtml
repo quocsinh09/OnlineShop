@@ -179,54 +179,15 @@
                 <div class="table-responsive">
                     <table class="table table-top-countries">
                         <tbody>
-                            <tr>
-                                <td>Tháng 1</td>
-                                <td class="text-right">$119,366.96</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 2</td>
-                                <td class="text-right">$70,261.65</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 3</td>
-                                <td class="text-right">$46,399.22</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 4</td>
-                                <td class="text-right">$35,364.90</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 5</td>
-                                <td class="text-right">$20,366.96</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 6</td>
-                                <td class="text-right">$10,366.96</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 7</td>
-                                <td class="text-right">$5,366.96</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 8</td>
-                                <td class="text-right">$1639.32</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 9</td>
-                                <td class="text-right">$1639.32</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 10</td>
-                                <td class="text-right">$1639.32</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 11</td>
-                                <td class="text-right">$1639.32</td>
-                            </tr>
-                            <tr>
-                                <td>Tháng 12</td>
-                                <td class="text-right">$1639.32</td>
-                            </tr>
+                            @for (int i = 1; i <= 12; i++)
+                            {
+                                <tr>
+                                    <td>Tháng @i</td>
+                                    <td class="text-right"> @Model.getTotal(i)</td>
+                                </tr>
+                            }
+                            
+                            
                         </tbody>
                     </table>
                 </div>
