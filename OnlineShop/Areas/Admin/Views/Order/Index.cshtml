@@ -5,6 +5,7 @@
     ViewBag.Title = "Đơn hàng";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     var admin = Session["Admin"] as Models.EF.User;
+    var link = "";
 }
 @section username{
     @admin.Name
@@ -214,6 +215,10 @@
 
                                                                 </form>
                                                             </div>
+                                                           
+                                                            <button type="submit" class="btn btn-info btn-fill pull-right">
+                                                                @Html.ActionLink("Thông tin chi tiết", "MemberAccount?page=" + item.CustomerID, "User")
+                                                            </button>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
