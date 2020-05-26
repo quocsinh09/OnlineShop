@@ -4,6 +4,7 @@
     Layout = "../Shared/_Layout.cshtml";
     ViewBag.Title = "Account";
     var admin = Session["Admin"] as Models.EF.User;
+    var member = Session["Member"] as Models.EF.User;
 }
 @section username{
     @admin.Name
@@ -17,9 +18,7 @@
 
 <div class="content">
     <div class="container-fluid"> 
-        @foreach (var item in Model)
-        {
-            //Bảng thông tin khách hàng
+      
             <div class="row">
                 <div class="col-md-8">
                     <div class="card">
@@ -32,19 +31,19 @@
                                     <div class="col-md-5 pr-1">
                                         <div class="form-group">
                                             <label>Họ và tên</label>
-                                            <input type="text" class="form-control" disabled="" placeholder="Company" value="@item.Name" readonly>
+                                            <input type="text" class="form-control" disabled="" placeholder="Company" value="@member.Name" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-3 px-1">
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="text" class="form-control" placeholder="Username" value="@item.Email" readonly>
+                                            <input type="text" class="form-control" placeholder="Username" value="@member.Email" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-4 pl-1">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Số điện thoại</label>
-                                            <input type="email" class="form-control" placeholder="Email" value="@item.Mobile" readonly>
+                                            <input type="email" class="form-control" placeholder="Email" value="@member.Mobile" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -52,13 +51,13 @@
                                     <div class="col-md-6 pr-1">
                                         <div class="form-group">
                                             <label>Tên  đăng nhập</label> 
-                                            <input type="text" class="form-control" placeholder="Firstname" value="@item.Username" readonly>
+                                            <input type="text" class="form-control" placeholder="Firstname" value="@member.Username" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-6 pl-1">
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
-                                            <input type="text" class="form-control" placeholder="Lastname" value="@item.Password" readonly>
+                                            <input type="text" class="form-control" placeholder="Lastname" value="@member.Password" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +65,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Địa chỉ</label>
-                                            <input type="text" class="form-control" placeholder="Địa chỉ" value="@item.Address" readonly>
+                                            <input type="text" class="form-control" placeholder="Địa chỉ" value="@member.Address" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -74,19 +73,19 @@
                                     <div class="col-md-4 pr-1">
                                         <div class="form-group">
                                             <label>Sinh nhật</label>
-                                            <input type="text" class="form-control" placeholder="Birthday" value="@item.BirthDay" readonly>
+                                            <input type="text" class="form-control" placeholder="Birthday" value="@member.BirthDay" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-4 px-1">
                                         <div class="form-group">
                                             <label>Ngày đăng ký</label>
-                                            <input type="text" class="form-control" placeholder="Số điện thoại" value="@item.CreatedDate" readonly>
+                                            <input type="text" class="form-control" placeholder="Số điện thoại" value="@member.CreatedDate" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-4 pl-1">
                                         <div class="form-group">
                                             <label>Trạng thái</label>
-                                            <input type="number" class="form-control" placeholder="Trạng thái" value="@item.Status" readonly>
+                                            <input type="number" class="form-control" placeholder="Trạng thái" value="@member.Status" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -106,10 +105,10 @@
                             <div class="author">
                                 <a href="#">
                                     <img class="avatar border-gray" src="~/Assets/images/icon/avatar-04.jpg" alt="...">
-                                    <h5 class="title">@item.Name </h5>
+                                    <h5 class="title">@member.Name </h5>
                                 </a>
                                 <p class="description">
-                                    @item.Email
+                                    @member.Email
                                 </p>
                             </div>
                             <p class="description text-center">
@@ -123,8 +122,8 @@
                 </div>
             </div>
             
-        }
-        @Html.PagedListPager(Model, page => Url.Action("MemberAccount", new { page, @searchString = @ViewBag.SearchString }))
+        
+        
     </div>
 </div>
 

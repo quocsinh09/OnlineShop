@@ -52,5 +52,7 @@ namespace Models.ViewModel
 
         public int? AmountMissOrder { get; set; }
 
+        public string username { get; set; }
+
     }
 }

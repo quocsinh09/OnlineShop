@@ -1,5 +1,4 @@
-﻿
-using Models.EF;
+﻿using Models.EF;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,27 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models.ViewModel
+namespace Models.DAO
 {
-    public class HomeViewModel
+    class HomeDAO
     {
-
-        //public int numberOfOrder {get; set; }
-
-        //public int numberOfMember { get; set; }
-
-        //public string totalEarning { get; set; }
-
-        //public int earningThisWeek { get; set; }
-
-        //public User GetByID(string Username);
-
-        //public string getTotal(int month);
-
-
-
-         OnlineShopDbContext dbContext = null;
-        public HomeViewModel()
+        OnlineShopDbContext dbContext = null;
+        public HomeDAO()
         {
             dbContext = new OnlineShopDbContext();
         }

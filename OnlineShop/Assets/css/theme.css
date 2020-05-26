@@ -1533,7 +1533,7 @@ section {
 .account-dropdown__item a {
     display: block;
     color: #333;
-    padding: 15px 25px;
+    padding: 1px 25px;
     font-size: 14px;
 }
 

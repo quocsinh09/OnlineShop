@@ -4,6 +4,7 @@ using Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -37,5 +38,21 @@ namespace OnlineShop.Areas.Admin.Controllers
                 return View();
             }
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        //{
+        //    //if (!ModelState.IsValid)
+        //    //{
+        //    //    return View(model);
+        //    //}
+        //    //var result = await UserManager.Change
+        //    //if()
+        //    //{
+
+        //    //}
+        //    return View(model);
+        //}
     }
 }

@@ -38,68 +38,65 @@ namespace Models.DAO
 
             return model.OrderByDescending(x => x.OrderDate).ToPagedList(page, pageSize);
         }
-        /// <summary>
-        /// Get list product by category
-        /// </summary>
-        /// <param name="categoryID"></param>
-        /// <returns></returns>
-        public IEnumerable<OrderViewModel> List( int pageIndex = 0, int pageSize = 15)
+        
+        public IEnumerable<OrderViewModel> List( int pageIndex = 1, int pageSize = 10)
         {
-            //totalRecord = dbContext.Orders.Where(x => x.CategoryID == categoryID).Count();
             var model = (from u in dbContext.Users
-                         join o in dbContext.Orders
-                         on u.ID equals o.CustomerID into OrderUser
-                         from o in OrderUser
-                         join od in dbContext.OrderDetails
-                         on o.ID equals od.OrderID
+                        join o in dbContext.Orders
+                        on u.ID equals o.CustomerID into OrderUser
+                        from o in OrderUser
+                        join od in dbContext.OrderDetails
+                        on o.ID equals od.OrderID
                          
-                        select new
-                         {
-                             ID = o.ID,
-                             CustomerID = o.CustomerID,
-                             Email = o.Email,
-                             Mobile  = o.Mobile,
-                             OrderDate = o.OrderDate,
-                             ShippedDate = o.ShippedDate,
-                             Address = o.Address,
-                             Status = o.Status,
-                             CostBy =  o.CostBy,
-                             ChangeStatus = o.ChangeStatus,
-                             Name =  u.Name,
-                             BirthDay = u.BirthDay,
-                             CreatedDate = u.CreatedDate,
-                             ModifiedDate  = u.ModifiedDate,
-                             AmountMissOrder = u.AmountMissOrder,
-                             ProductCode = od.ProductCode,
-                             ProductName = od.ProductName,
-                             MetaTitle = od.MetaTitle,
-                             Amount = od.Amount,
-                             Price = od.Price
-                         }).AsEnumerable().Select(x => new OrderViewModel()
-                         {
-                             ID = x.ID,
-                             CustomerID = x.CustomerID,
-                             Email = x.Email,
-                             Mobile = x.Mobile,
-                             OrderDate = x.OrderDate,
-                             ShippedDate = x.ShippedDate,
-                             Address = x.Address,
-                             Status = x.Status,
-                             CostBy = x.CostBy,
-                             ChangeStatus = x.ChangeStatus,
-                             Name = x.Name,
-                             BirthDay = x.BirthDay,
-                             CreatedDate = x.CreatedDate,
-                             ModifiedDate = x.ModifiedDate,
-                             AmountMissOrder = x.AmountMissOrder,
-                             ProductCode = x.ProductCode,
-                             ProductName = x.ProductName,
-                             MetaTitle = x.MetaTitle,
-                             Amount = x.Amount,
-                             Price = x.Price
-                         });
+                    select new
+                        {
+                            ID = o.ID,
+                            CustomerID = o.CustomerID,
+                            Email = o.Email,
+                            Mobile  = o.Mobile,
+                            OrderDate = o.OrderDate,
+                            ShippedDate = o.ShippedDate,
+                            Address = o.Address,
+                            Status = o.Status,
+                            CostBy =  o.CostBy,
+                            ChangeStatus = o.ChangeStatus,
+                            Name =  u.Name,
+                            BirthDay = u.BirthDay,
+                            CreatedDate = u.CreatedDate,
+                            ModifiedDate  = u.ModifiedDate,
+                            AmountMissOrder = u.AmountMissOrder,
+                            ProductCode = od.ProductCode,
+                            ProductName = od.ProductName,
+                            MetaTitle = od.MetaTitle,
+                            Amount = od.Amount,
+                            Price = od.Price,
+                            username = u.Username
+                        }).AsEnumerable().Select(x => new OrderViewModel()
+                        {
+                            ID = x.ID,
+                            CustomerID = x.CustomerID,
+                            Email = x.Email,
+                            Mobile = x.Mobile,
+                            OrderDate = x.OrderDate,
+                            ShippedDate = x.ShippedDate,
+                            Address = x.Address,
+                            Status = x.Status,
+                            CostBy = x.CostBy,
+                            ChangeStatus = x.ChangeStatus,
+                            Name = x.Name,
+                            BirthDay = x.BirthDay,
+                            CreatedDate = x.CreatedDate,
+                            ModifiedDate = x.ModifiedDate,
+                            AmountMissOrder = x.AmountMissOrder,
+                            ProductCode = x.ProductCode,
+                            ProductName = x.ProductName,
+                            MetaTitle = x.MetaTitle,
+                            Amount = x.Amount,
+                            Price = x.Price,
+                            username = x.username
+                        });
 
-            return model.OrderByDescending(x => x.OrderDate).ToPagedList(pageIndex, pageSize);   //.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            return model.OrderByDescending(x => x.Name).ToPagedList(pageIndex, pageSize);   //.Skip((pageIndex - 1) * pageSize).Take(pageSize);
             //return model.ToList();
         }
         //public List<OrderViewModel> Search(string keyword, ref int totalRecord, int pageIndex = 1, int pageSize = 2)

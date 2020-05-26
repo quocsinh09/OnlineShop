@@ -17,11 +17,14 @@ namespace OnlineShop.Areas.Admin.Controllers
             var model = dataAccessObj.admins(1, 5);
             return View(model);
         }
-        public ActionResult MemberAccount(int page= 1, int pageNumber = 1 )
+        public ActionResult MemberAccount(string id)
         {
+           
             var dataAccessObj = new UserDAO();
-            var model = dataAccessObj.users(page, pageNumber);
-            return View(model);
+            var user = dataAccessObj.GetByID(id);
+            Session["Member"] = user;
+
+            return View();
         }
         /*public ActionResult Create(Admin _admin)
         {
