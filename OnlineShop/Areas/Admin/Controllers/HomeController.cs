@@ -15,7 +15,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
-            var order = new HomeViewModel();
+            var order = new OrderDAO();
             if (Session["Admin"] == null)
             {
                 return RedirectToAction("Index", "Login");

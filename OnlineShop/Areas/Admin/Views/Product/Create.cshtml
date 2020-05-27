@@ -14,171 +14,157 @@
 @section email{
     @admin.Email
 }
-<h2 class="col-lg-12">Create</h2>
+<h2 class="col-lg-12">Thêm mới sản phẩm</h2>
 
 @using (Html.BeginForm("Create", "Product", FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-group ">
-        <h4>Product</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class =  "text-danger" })
-        <div class="form-row" >
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6 ">
-                    @Html.TextBoxFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger noti-wrap text-nowrap" })
-                </div>
-            </div>
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.MetaTitle, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.MetaTitle, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.MetaTitle, "", new { @class = "text-danger noti-wrap text-nowrap" })
-                </div>
-            </div>
-        </div>
+        <div class="form-group col-lg-12">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class =  "text-danger" })
 
-        <div class="form-row" >
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class =  "text-danger noti-wrap text-nowrap" })
-                </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Tên sản phẩm</label>
+                <div class="input-group col">
+                    <div style="width:100% ">
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                 </div>
             </div>
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.MetaDescription, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.MetaDescription, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.MetaDescription, "", new { @class =  "text-danger noti-wrap text-nowrap" })
-                </div>
-            </div>
-        </div>
 
-        <div class="form-row" >
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.ImageFirst, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.ImageFirst, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ImageFirst, "", new { @class =  "text-danger noti-wrap text-nowrap" })
-                </div>
-            </div>
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.ImageSecond, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.ImageSecond, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ImageSecond, "", new { @class =  "text-danger noti-wrap text-nowrap" })
-                </div>
-            </div>
-        </div>
 
-        <div class="form-row" >
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Price, "", new { @class =  "text-danger noti-wrap text-nowrap" })
-                </div>
-            </div>
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.PercentSale, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.PercentSale, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PercentSale, "", new { @class =  "text-danger noti-wrap text-nowrap" })
-                </div>
-            </div>
-        </div>
+            
 
-        <div class="form-row" >
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.Promotion, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.Promotion, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Promotion, "", new { @class =  "text-danger noti-wrap text-nowrap" })
-                </div>
-            </div>
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.CategoryIDParent, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.CategoryIDParent, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CategoryIDParent, "", new { @class =  "text-danger noti-wrap text-nowrap" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-row" >
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.CategoryIDChild, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.CategoryIDChild, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CategoryIDChild, "", new { @class =  "text-danger noti-wrap text-nowrap" })
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Link sản phẩm</label>
+                <div class="input-group col">
+                    <div style="width:100% ">
+                        @Html.TextBoxFor(model => model.MetaTitle, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MetaTitle, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
 
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class =  "text-danger noti-wrap text-nowrap" })
-                </div>
-            </div>
-        </div>
 
-        <div class="form-row" >
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.Quanity, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.Quanity, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Quanity, "", new { @class =  "text-danger noti-wrap text-nowrap" })
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Mô tả chi tiết</label>
+                <div class="input-group col">
+                    <div style="width:100% ">
+                        @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Status, "", new { @class =  "text-danger noti-wrap text-nowrap" })
-                </div>
-            </div>
-        </div>
 
-        <div class="form-row" >
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.BuyCount, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.BuyCount, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.BuyCount, "", new { @class =  "text-danger noti-wrap text-nowrap" })
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Mô tả chung</label>
+                <div class="input-group col">
+                    <div style="width:100% ">
+                        @Html.TextBoxFor(model => model.MetaDescription, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MetaDescription, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.ViewCount, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.ViewCount, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ViewCount, "", new { @class =  "text-danger noti-wrap text-nowrap" })
-                </div>
-            </div>
-        </div>
 
-        <div class="form-row">
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.ReviewPoint, htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.ReviewPoint, new { htmlAttributes = new { @class = "form-control col-md-12" } })
-                    @Html.ValidationMessageFor(model => model.ReviewPoint, "", new { @class =  "text-danger noti-wrap text-nowrap" })
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Ảnh sản phẩm</label>
+                <div class="input-group col">
+                        <div class="row col">
+                            @Html.TextBoxFor(model => model.ImageFirst, new { @class = "form-control", @placeholder = "Ảnh thứ nhất" } )
+                            @Html.ValidationMessageFor(model => model.ImageFirst, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="row col">
+                            @Html.TextBoxFor(model => model.ImageSecond, new { @class = "form-control", @placeholder = "Ảnh thứ hai"    })
+                            @Html.ValidationMessageFor(model => model.ImageSecond, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Giá bán</label>
+                <div class="col">
+                    <div class="input-group">
+                        <div class="row col">
+                            @Html.TextBoxFor(model => model.Price, new { @class = "form-control", @placeholder = "Giá cơ bản" })
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="row col">
+                            @Html.TextBoxFor(model => model.PercentSale, new { @class = "form-control", @placeholder = "Giảm giá" })
+                            @Html.ValidationMessageFor(model => model.PercentSale, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="row col">
+                            @Html.TextBoxFor(model => model.Promotion, new { @class = "form-control selectpicker", @placeholder = "Khuyến mãi" })
+                            @Html.ValidationMessageFor(model => model.Promotion, "", new { @class = "text-danger" })
+                        </div>
+                     </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Dòng sản phẩm</label>
+                <div class="col">
+                    <div class="input-group">
+                        <div class="row col">
+                            @Html.TextBoxFor(model => model.CategoryIDParent, new { @class = "form-control", @placeholder = "Mã dòng sản phẩm cha" })
+                            @Html.ValidationMessageFor(model => model.CategoryIDParent, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="row col">
+                            @Html.TextBoxFor(model => model.CategoryIDChild, new { @class = "form-control", @placeholder = "Mã dòng sản phẩm con" })
+                            @Html.ValidationMessageFor(model => model.CategoryIDChild, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col">
+                    <div class="input-group">
+                        <div class="row col">
+                            @Html.TextBoxFor(model => model.CreatedDate, new { @class = "form-control", @placeholder = "Ngày thêm sản phẩm" })
+                            @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="row col">
+                            @Html.TextBoxFor(model => model.Quanity, new { @class = "form-control", @placeholder = "Số lượng trong kho" })
+                            @Html.ValidationMessageFor(model => model.Quanity, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="row col">
+                            @Html.TextBoxFor(model => model.Status, new { @class = "form-control", @placeholder = "Tình trạng" })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col">
+                    <div class="input-group">
+                        <div class="row col">
+                            @Html.TextBoxFor(model => model.BuyCount, new { @class = "form-control", @placeholder = "Giá nhập vào" })
+                            @Html.ValidationMessageFor(model => model.BuyCount, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="row col">
+                            @Html.TextBoxFor(model => model.ViewCount, new { @class = "form-control", @placeholder = "Số lượng hiển thị trên trang" })
+                            @Html.ValidationMessageFor(model => model.ViewCount, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="row col">
+                            @Html.TextBoxFor(model => model.ReviewPoint, new { @class = "form-control", @placeholder = "Điểm đánh giá" })
+                            @Html.ValidationMessageFor(model => model.ReviewPoint, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-            <div class="form-row col-md-6">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
-     
+    <button type="submit" class="btn btn-info btn-fill pull-right  m-r-10">Cập nhật</button>
 }
 
-<div class="col-lg-10">
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<button type="button" class="btn btn-info btn-fill pull-left m-l-10">
+    <span style="color:white;">
+        @Html.ActionLink("Quay về", "Index", "Product",  new { style = "color: white"})
+    </span>
+</button>
+
+

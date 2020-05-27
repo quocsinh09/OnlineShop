@@ -23,8 +23,8 @@
         <div class="table-data__tool">
             <div class="table-data__tool-right">
                 
-                <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                    <i class="zmdi zmdi-plus"></i>@Html.ActionLink("Thêm sản phẩm", "Create", "Product")
+                <button class="au-btn au-btn-icon au-btn--green au-btn--small ">
+                    <i class="zmdi zmdi-plus"></i>@Html.ActionLink("Thêm sản phẩm", "Create", "Product", new { @class = "text-white " })
                 </button>
             </div>
         </div>
@@ -52,7 +52,8 @@
                                     <td>@item.Price</td>
                                     <td>@item.Quanity</td>
                                     <td>
-                                        <a href="/Admin/Product/Edit/@item.ProductCode">Sửa</a>
+                                        @*@Html.ActionLink("Sửa", "Edit", "Product", new { id = @item.ProductCode }, null)*@
+                                         <a href="/Admin/Product/Edit/@item.ProductCode">Sửa</a>
                                          |
                                             @Ajax.ActionLink("Xoá", "Delete", new { @id = item.ProductCode }, new AjaxOptions
                                             {

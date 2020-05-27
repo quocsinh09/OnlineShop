@@ -33,7 +33,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var dao = new UserDAO();
+                var dao = new ProductDAO();
                 int id = dao.Insert(product);
                 if (id > 0)
                 {
@@ -48,56 +48,63 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View(product);
             
         }
-        [HttpPost]
 
+        [HttpGet]
         // GET: Admin/ProductCategory/Edit/5
         public ActionResult Edit(int id)
         {
-            var product = new UserDAO().ViewDetail(id); 
+            var dataAccessObj = new ProductDAO();
+            var product = dataAccessObj.ViewDetail(id);
             return View(product);
         }
-
-        public ActionResult Edit()
-        {
-            return View();
-        }
-
-        // POST: Admin/ProductCategory/Edit/5
+        // POST: Admin/Product/Create
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Product product)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                var dao = new ProductDAO();
+                var result = dao.Update(product);
+                if (result)
+                {
+                    return RedirectToAction("Index", "Product");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Cập nhật sản phẩm không thành công");
+                    //return View("Index");
+                }
+            }
+            return View(product);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
 
-        // GET: Admin/ProductCategory/Delete/5
-        public ActionResult Delete(int id)
+
+
+        public ActionResult Delete()
         {
             return View();
         }
+        // GET: Admin/ProductCategory/Delete/5
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
 
         // POST: Admin/ProductCategory/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
+        //[HttpPost]
+        //public ActionResult Delete(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }

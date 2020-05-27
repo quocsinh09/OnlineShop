@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Models.DAO
 {
-    class HomeDAO
+    public class HomeDAO
     {
         OnlineShopDbContext dbContext = null;
         public HomeDAO()
