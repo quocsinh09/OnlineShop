@@ -52,15 +52,18 @@
                                     <td>@item.Price</td>
                                     <td>@item.Quanity</td>
                                     <td>
-                                        @*@Html.ActionLink("Sửa", "Edit", "Product", new { id = @item.ProductCode }, null)*@
-                                         <a href="/Admin/Product/Edit/@item.ProductCode">Sửa</a>
-                                         |
-                                            @Ajax.ActionLink("Xoá", "Delete", new { @id = item.ProductCode }, new AjaxOptions
-                                            {
-                                                Confirm = "Bạn có muốn sản phẩm này không?",
-                                                OnComplete = "$('#row_" + @item.ProductCode + "').remove()",
-                                                HttpMethod = "Delete"
-                                            })
+                                        <div class="table-data-feature"> 
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa">
+                                                @Html.ActionLink(" ", "Edit", "Product", new {id = @item.ProductCode }, new { @class = "zmdi zmdi-edit" })
+                                            </button>
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xóa">
+                                                @Html.ActionLink(" ", "Delete", "Product", new { id = @item.ProductCode }, new { @class = "zmdi zmdi-delete" })
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>
+
+                           
                                     </td>
 
                                     

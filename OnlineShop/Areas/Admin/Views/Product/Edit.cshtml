@@ -27,7 +27,7 @@
             <label class="col-md-2 col-form-label">Tên sản phẩm</label>
             <div class="input-group col">
                 <div style="width:100% ">
-                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Model.Name" })
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = Model.Name })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger"})
                 </div>
             </div>
