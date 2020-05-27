@@ -14,7 +14,7 @@
 @section email{
     @admin.Email
 }
-<h2 class="col-lg-12">Chỉnh sửa sản phẩm</h2>
+<h2 class="col-lg-12" style="font-family:Arial, Helvetica, sans-serif;">Chỉnh sửa sản phẩm</h2>
 @using (Html.BeginForm("Edit", "Product", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -91,9 +91,11 @@
                         @Html.TextBoxFor(model => model.PercentSale, new { @class = "form-control", @placeholder = "Model.PercentSale"})
                         @Html.ValidationMessageFor(model => model.PercentSale, "", new { @class = "text-danger" })
                     </div>
-                    <div class="row col">
-                        @Html.TextBoxFor(model => model.Promotion, new { @class = "form-control selectpicker", @placeholder = "Model.Promotion" })
-                        @Html.ValidationMessageFor(model => model.Promotion, "", new { @class = "text-danger" })
+                    <div class="list-group-item">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(model => model.Promotion, new {@checked = Model.Promotion }) Khuyến mãi
+                            @Html.ValidationMessageFor(model => model.Promotion, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
             </div>

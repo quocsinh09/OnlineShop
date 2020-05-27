@@ -78,11 +78,20 @@ namespace Models.DAO
                 dbContext.SaveChanges();
                 return true;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 return false;
 
             }
+        }
+
+        // Xoa san pham
+        public bool Delete(int id)
+        {
+            var product = dbContext.Products.Find(id);
+            dbContext.Products.Remove(product);
+            dbContext.SaveChanges();
+            return true;
         }
 
         // Xem thông tin chi tiết

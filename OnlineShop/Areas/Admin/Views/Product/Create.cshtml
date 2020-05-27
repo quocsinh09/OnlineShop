@@ -28,7 +28,7 @@
                 <label class="col-md-2 col-form-label">Tên sản phẩm</label>
                 <div class="input-group col">
                     <div style="width:100% ">
-                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control"})
                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
                  </div>
@@ -94,9 +94,11 @@
                             @Html.TextBoxFor(model => model.PercentSale, new { @class = "form-control", @placeholder = "Giảm giá" })
                             @Html.ValidationMessageFor(model => model.PercentSale, "", new { @class = "text-danger" })
                         </div>
-                        <div class="row col">
-                            @Html.TextBoxFor(model => model.Promotion, new { @class = "form-control selectpicker", @placeholder = "Khuyến mãi" })
-                            @Html.ValidationMessageFor(model => model.Promotion, "", new { @class = "text-danger" })
+                        <div class="list-group-item">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(model => model.Promotion) Khuyến mãi 
+                                @Html.ValidationMessageFor(model => model.Promotion, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                      </div>
                 </div>
@@ -130,9 +132,11 @@
                             @Html.TextBoxFor(model => model.Quanity, new { @class = "form-control", @placeholder = "Số lượng trong kho" })
                             @Html.ValidationMessageFor(model => model.Quanity, "", new { @class = "text-danger" })
                         </div>
-                        <div class="row col">
-                            @Html.TextBoxFor(model => model.Status, new { @class = "form-control", @placeholder = "Tình trạng" })
-                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        <div class="list-group-item">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(model => model.Status) Tình trạng
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
                 </div>

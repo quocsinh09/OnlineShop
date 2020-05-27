@@ -38,8 +38,8 @@
         public decimal Price { get; set; }
 
         public double? PercentSale { get; set; }
-
-        public bool? Promotion { get; set; }
+       
+        public bool Promotion { get; set; }
 
         [Required(ErrorMessage = " Không được để trống")]
         [StringLength(10)]
@@ -53,7 +53,7 @@
         [Required(ErrorMessage = " Không được để trống")]
         public int? Quanity { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
         public int? BuyCount { get; set; }
 

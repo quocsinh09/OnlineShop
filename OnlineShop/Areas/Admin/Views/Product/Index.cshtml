@@ -1,6 +1,6 @@
 ﻿@model PagedList.IPagedList<Models.EF.Product>
 @using PagedList.Mvc;
-
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Index";
     Layout = "../Shared/_Layout.cshtml";
@@ -17,65 +17,227 @@
 }
 
     <div class="container-fluid">
-    <!-- Sản phẩm đang bán -->
-    <div class="col-md-12">
         <!-- Button -->
         <div class="table-data__tool">
             <div class="table-data__tool-right">
-                
-                <button class="au-btn au-btn-icon au-btn--green au-btn--small ">
+                <button class="au-btn au-btn-icon au-btn--green au-btn--small pull-right">
                     <i class="zmdi zmdi-plus"></i>@Html.ActionLink("Thêm sản phẩm", "Create", "Product", new { @class = "text-white " })
                 </button>
             </div>
         </div>
         <!-- Kết thúc Button -->
+
         <div class="row">
             <div class="col-md-12">
-                <div class="bgc-white bd bdrs-3 p-20 mB-20 ">
-                    <h4 class="c-grey-900 mB-20"> Danh sách sản phẩm </h4>
-                    <table class="table table-striped">
+                <div class="table-responsive table--no-card m-b-30">
+                    <table class=" table-borderless table-striped table-earning">
                         <thead>
                             <tr>
-                                <th>Mã sản phẩm</th>
+                                <th>Mã</th>
                                 <th>Tên sản phẩm</th>
-                                <th>Giá</th>
+                               
                                 <th>Trong kho</th>
-                                <th></th>
+                                <th> </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>@item.ProductCode</td>
-                                    <td>@item.Name</td>
-                                    <td>@item.Price</td>
+                                <tr id="row_@item.ProductCode">
+                                    <td data-toggle="modal" data-target="#@item.ProductCode">@item.ProductCode</td>
+                                    <td data-toggle="modal" data-target="#@item.ProductCode">@item.Name</td>
                                     <td>@item.Quanity</td>
                                     <td>
-                                        <div class="table-data-feature"> 
+                                        <div class="table-data-feature">
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa">
-                                                @Html.ActionLink(" ", "Edit", "Product", new {id = @item.ProductCode }, new { @class = "zmdi zmdi-edit" })
+                                                @Html.ActionLink(" ", "Edit", "Product", new { id = @item.ProductCode }, new { @class = "zmdi zmdi-edit" })
                                             </button>
-                                            <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xóa">
-                                                @Html.ActionLink(" ", "Delete", "Product", new { id = @item.ProductCode }, new { @class = "zmdi zmdi-delete" })
+
+                                            <button class="item" data-toggle="modal" data-placement="top" title="" data-target="#del_@item.ProductCode" data-original-title="Xóa">
+                                                <i class="zmdi zmdi-delete"></i>
+                                                @*@Html.ActionLink(" ", "Delete", "Product", new { id = @item.ProductCode }, new { @class = "zmdi zmdi-delete" })*@
                                             </button>
+                                            <div class="modal fade" id="del_@item.ProductCode" data-backdrop="static" data-keyboard="false">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="card-title">@item.Name</h4>
+                                                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="card">
+                                                                        <div class="card-body">
+                                                                            Bạn có chắc muốn xóa sản phẩm này
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-info btn-fill left" data-dismiss="modal" aria-label="Quay lại">Quay lại</button>
+                                                            @*<button type="submit" class="btn btn-info btn-fill pull-right  m-r-10">
+                                                                @Html.ActionLink("Xác nhận", "Delete", "Product", new { id = @item.ProductCode }, new { @class = "text-white " })
+                                                            </button>*@
+                                                            @using (Html.BeginForm("", "Product", new { id = "FilterClick" }, FormMethod.Post, null))
+                                                            {
+                                                                <input type="submit" class="smallbutton" id="Delete" value="Xác nhận" />                
+                                                            }
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </td>
-                                    <td>
-
-                           
-                                    </td>
-
                                     
                                 </tr>
+                                   
+                                <!--Modal for Product detail-->
+                                 <div class="modal fade" id="@item.ProductCode"  data-keyboard="false" >
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="card-title">Thông tin sản phẩm</h4>
+                                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="col-lg-12">
+                                                    <div class="card mb-12">
+                                                        <form role="form">
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 col-form-label">Tên sản phẩm</label>
+                                                                <div class="input-group col">
+                                                                    <div style="width:100% ">
+                                                                        <input class="form-control" placeholder="@item.Name" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 col-form-label">Link sản phẩm</label>
+                                                                <div class="input-group col">
+                                                                    <div style="width:100% ">
+                                                                        <input class="form-control" placeholder="@item.MetaTitle" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 col-form-label">Mô tả chi tiết</label>
+                                                                <div class="input-group col">
+                                                                    <div style="width:100% ">
+                                                                        <input class="form-control" placeholder="@item.Description" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 col-form-label">Mô tả chung</label>
+                                                                <div class="input-group col">
+                                                                    <div style="width:100% ">
+                                                                        <input class="form-control" placeholder="@item.MetaDescription" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 col-form-label">Ảnh sản phẩm</label>
+                                                                <div class="input-group col">
+                                                                    <div class="row col">
+                                                                        <input class="form-control" placeholder="@item.ImageFirst" />
+                                                                    </div>
+                                                                    <div class="row col">
+                                                                        <input class="form-control" placeholder="@item.ImageSecond" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 col-form-label">Giá bán</label>
+                                                                <div class="col">
+                                                                    <div class="input-group">
+                                                                        <div class="row col">
+                                                                            <input class="form-control" placeholder="@item.Price" />
+                                                                        </div>
+                                                                        <div class="row col">
+                                                                            <input class="form-control" placeholder="@item.PercentSale" />
+                                                                        </div>
+                                                                        <div class="row col">
+                                                                            <input class="form-control" placeholder="@item.Promotion" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label class="col-md-2 col-form-label">Dòng sản phẩm</label>
+                                                                <div class="col">
+                                                                    <div class="input-group">
+                                                                        <div class="row col">
+                                                                            <input class="form-control" placeholder="@item.CategoryIDParent" />
+                                                                        </div>
+                                                                        <div class="row col">
+                                                                            <input class="form-control" placeholder="@item.CategoryIDChild" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+
+                                                                <div class="col">
+                                                                    <div class="input-group">
+                                                                        <div class="row col">
+                                                                            <input class="form-control" placeholder="@item.CreatedDate" />
+                                                                        </div>
+                                                                        <div class="row col">
+                                                                            <input class="form-control" placeholder="@item.Quanity" />
+                                                                        </div>
+                                                                        <div class="row col">
+                                                                            <input class="form-control" placeholder="@item.Status" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+
+                                                                <div class="col">
+                                                                    <div class="input-group">
+                                                                        <div class="row col">
+                                                                            <input class="form-control" placeholder="@item.BuyCount" />
+                                                                        </div>
+                                                                        <div class="row col">
+                                                                            <input class="form-control" placeholder="@item.ViewCount" />
+                                                                        </div>
+                                                                        <div class="row col">
+                                                                            <input class="form-control" placeholder="@item.ReviewPoint" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End modal-->
                             }
-                            
+
                         </tbody>
                     </table>
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
                 </div>
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
             </div>
         </div>
+        
         <!-- Kết thúc Sản phẩm đang bán -->
         <div class="space"></div>
         <!-- Sản phẩm bán chạy -->
@@ -117,5 +279,8 @@
             </div>
         </div>
         <!-- Kết thúc Sản phẩm bán chạy -->
-    </div>
+
 </div>
+
+
+

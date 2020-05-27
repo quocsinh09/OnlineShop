@@ -72,7 +72,6 @@ namespace OnlineShop.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Cập nhật sản phẩm không thành công");
-                    //return View("Index");
                 }
             }
             return View(product);
@@ -81,30 +80,32 @@ namespace OnlineShop.Areas.Admin.Controllers
 
 
 
-        public ActionResult Delete()
-        {
-            return View();
-        }
         // GET: Admin/ProductCategory/Delete/5
+        //[HttpGet]
         //public ActionResult Delete(int id)
         //{
         //    return View();
         //}
 
         // POST: Admin/ProductCategory/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var dao = new ProductDAO();
+                var result = dao.Delete(id);
+                if (result)
+                {
+                    return RedirectToAction("Index", "Product");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Cập nhật sản phẩm không thành công");
+                    //return View("Index");
+                }
+            }
+            return View();
+        }
     }
 }
