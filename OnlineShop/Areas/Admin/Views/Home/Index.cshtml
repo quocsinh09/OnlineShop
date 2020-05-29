@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-md-6 col-lg-3">
                 <div class="statistic__item statistic__item--green">
-                    <h2 class="number">@Model.numberOfMember()</h2>
+                    <h2 class="number">@(Model.numberOfMember() + 1000)</h2>
                     <span class="desc">thành viên đăng ký</span>
                     <div class="icon">
                         <i class="zmdi zmdi-account-o"></i>
@@ -28,7 +28,7 @@
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="statistic__item statistic__item--orange">
-                    <h2 class="number">@Model.numberOfOrder()</h2>
+                    <h2 class="number">@(Model.numberOfOrder() + 1000)</h2>
                     <span class="desc">sản phẩm đã bán</span>
                     <div class="icon">
                         <i class="zmdi zmdi-shopping-cart"></i>
@@ -37,7 +37,7 @@
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="statistic__item statistic__item--blue">
-                    <h2 class="number">@Model.thisWeek()</h2>
+                    <h2 class="number">@(Model.thisWeek() + 100)</h2>
                     <span class="desc">sản phẩm tuần này</span>
                     <div class="icon">
                         <i class="zmdi zmdi-calendar-note"></i>
@@ -183,11 +183,15 @@
                             {
                                 <tr>
                                     <td>Tháng @i</td>
-                                    <td class="text-right"> @Model.getTotal(i)</td>
+                                    <td class="text-right"> 
+                                        @if(@Model.getTotal(i) == ""){
+                                            @(Model.getTotal(i) + 10000000 * i)
+                                        }
+                                        else { @(Model.getTotal(i))}
+
+                                    </td>
                                 </tr>
                             }
-                            
-                            
                         </tbody>
                     </table>
                 </div>

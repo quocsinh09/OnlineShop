@@ -17,113 +17,201 @@
 }
 
 <div class="content">
-    <div class="container-fluid"> 
-      
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Chỉnh sửa thông tin</h4>
-                        </div>
-                        <div class="card-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-5 pr-1">
-                                        <div class="form-group">
-                                            <label>Họ và tên</label>
-                                            <input type="text" class="form-control" disabled="" placeholder="Company" value="@member.Name" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 px-1">
-                                        <div class="form-group">
-                                            <label>Email</label>
-                                            <input type="text" class="form-control" placeholder="Username" value="@member.Email" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 pl-1">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Số điện thoại</label>
-                                            <input type="email" class="form-control" placeholder="Email" value="@member.Mobile" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 pr-1">
-                                        <div class="form-group">
-                                            <label>Tên  đăng nhập</label> 
-                                            <input type="text" class="form-control" placeholder="Firstname" value="@member.Username" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 pl-1">
-                                        <div class="form-group">
-                                            <label>Mật khẩu</label>
-                                            <input type="text" class="form-control" placeholder="Lastname" value="@member.Password" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Địa chỉ</label>
-                                            <input type="text" class="form-control" placeholder="Địa chỉ" value="@member.Address" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4 pr-1">
-                                        <div class="form-group">
-                                            <label>Sinh nhật</label>
-                                            <input type="text" class="form-control" placeholder="Birthday" value="@member.BirthDay" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 px-1">
-                                        <div class="form-group">
-                                            <label>Ngày đăng ký</label>
-                                            <input type="text" class="form-control" placeholder="Số điện thoại" value="@member.CreatedDate" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 pl-1">
-                                        <div class="form-group">
-                                            <label>Trạng thái</label>
-                                            <input type="number" class="form-control" placeholder="Trạng thái" value="@member.Status" readonly>
-                                        </div>
-                                    </div>
-                                </div>
+    <div class="container-fluid">
 
-                                <button type="submit" class="btn btn-info btn-fill pull-right">Cập nhật</button>
-                                <div class="clearfix"></div>
-                            </form>
-                        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" style="font-family:Arial, Helvetica, sans-serif">Chỉnh sửa thông tin</h4>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-user">
-                        <div class="card-image">
-                            <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
-                        </div>
-                        <div class="card-body">
-                            <div class="author">
-                                <a href="#">
-                                    <img class="avatar border-gray" src="~/Assets/images/icon/avatar-04.jpg" alt="...">
-                                    <h5 class="title">@member.Name </h5>
-                                </a>
-                                <p class="description">
-                                    @member.Email
-                                </p>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-5 pr-1">
+                                    <div class="form-group">
+                                        <label>Họ và tên</label>
+                                        <input type="text" class="form-control" disabled="" placeholder="Company" value="@member.Name" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 px-1">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control" placeholder="Username" value="@member.Email" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Số điện thoại</label>
+                                        <input type="email" class="form-control" placeholder="Email" value="@member.Mobile" readonly>
+                                    </div>
+                                </div>
                             </div>
-                            <p class="description text-center">
-                                "Lamborghini Mercy
-                                <br> Your chick she so thirsty
-                                <br> I'm in that two seat Lambo"
-                            </p>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Tên  đăng nhập</label>
+                                        <input type="text" class="form-control" placeholder="Firstname" value="@member.Username" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Mật khẩu</label>
+                                        <input type="text" class="form-control" placeholder="Lastname" value="@member.Password" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Địa chỉ</label>
+                                        <input type="text" class="form-control" placeholder="Địa chỉ" value="@member.Address" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label>Sinh nhật</label>
+                                        <input type="text" class="form-control" placeholder="Birthday" value="@member.BirthDay" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                        <label>Ngày đăng ký</label>
+                                        <input type="text" class="form-control" placeholder="Số điện thoại" value="@member.CreatedDate" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label>Trạng thái</label>
+                                        <input type="number" class="form-control" placeholder="Trạng thái" value="@member.Status" readonly>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <button type="submit" class="btn btn-info btn-fill pull-right">Khóa người dùng</button>
+                            <div class="clearfix"></div>
+                        </form>
                     </div>
                 </div>
             </div>
-            
-        
-        
+            <div class="col-md-4" style="height:300px">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="author">
+                            <img class="avatar border-gray" src="~/Assets/images/icon/avatar-04.jpg" alt="...">
+                            <a class="center pull-right">
+                                <h5 class="title">@member.Name </h5>
+                                <div class="text-wrap">@member.Email</div>
+                            </a>
+                        </div>
+
+                        <div class="row m-t-10">
+                            <div class="col-lg-12">
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <div class="caption text-primary">
+                                            <i class="ti-panel"></i> Các hoạt động gần đây
+                                        </div>
+                                    </div>
+                                    <div class="card-body scrollbox-md" data-simplebar="init">
+                                        <div class="simplebar-wrapper" style="margin: -19px;">
+                                            <div class="simplebar-height-auto-observer-wrapper">
+                                                <div class="simplebar-height-auto-observer"></div>
+                                            </div>
+                                            <div class="simplebar-mask">
+                                                <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                                    <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
+                                                        <div class="simplebar-content" style="padding: 19px;">
+                                                            <div class="timeline-wrapper">
+                                                                <div class="timeline-item" data-date="04-11-2020">
+                                                                    <p>
+                                                                        4/11/2020
+                                                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates quam nisi
+                                                                        distinctio dolorum est tempora.
+                                                                    </p>
+                                                                    <a href="javascript:;" class="btn btn-sm btn-primary">More Info</a>
+                                                                </div>
+                                                                <div class="timeline-item" data-date="04-16-2020">
+                                                                    <p>4/16Completed dashboard layout and add all required widgets.</p>
+                                                                </div>
+                                                                <div class="timeline-item" data-date="04-14-2020">
+                                                                    <p>
+                                                                        4/14Added new page to UI Element category. Lorem ipsum dolor sit amet, consectetur
+                                                                        adipisicing elit. Sit officiis ut natus et minima expedita.
+                                                                    </p>
+                                                                    <a href="javascript:;" class="btn btn-sm btn-primary">Read More</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="simplebar-placeholder" style="width: 275px; height: 592px;"></div>
+                                        </div>
+                                        <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                                            <div class="simplebar-scrollbar" style="width: 0px; transform: translate3d(0px, 0px, 0px); display: none;">
+                                            </div>
+                                        </div>
+                                        <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
+                                            <div class="simplebar-scrollbar" style="height: 152px; transform: translate3d(0px, 0px, 0px); display: block;">
+                                            </div>
+                                        </div>
+                                    </div>                                    @*<div class="card-body scrollbox-md" data-simplebar="init">
+                                        <div class="simplebar-wrapper" style="margin: -19px;hei">
+                                            <div class="simplebar-height-auto-observer-wrapper">
+                                                <div class="simplebar-height-auto-observer"></div>
+                                            </div>
+                                            <div class="simplebar-mask">
+                                                <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                                    <div class="simplebar-content-wrapper" style="height: 200px; overflow: hidden scroll;">
+                                                        <div class="simplebar-content" style="padding: 19px;">
+                                                            <div class="timeline-wrapper">
+                                                                <div class="timeline-item" data-date="04-22-2020">
+                                                                    <p>
+                                                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                                                                        Voluptates quam nisi distinctio dolorum est tempora.
+                                                                    </p>
+                                                                    <a href="javascript:;" class="btn btn-sm btn-primary">More Info</a>
+                                                                </div>
+                                                                <div class="timeline-item" data-date="04-16-2020">
+                                                                    <p>
+                                                                        Completed dashboard layout and add all required widgets.
+                                                                    </p>
+                                                                </div>
+                                                                <div class="timeline-item" data-date="04-14-2020">
+                                                                    <p>
+                                                                        Added new page to UI Element category. Lorem ipsum dolor
+                                                                        sit amet, consectetur adipisicing elit. Sit officiis ut
+                                                                        natus et minima expedita.
+                                                                    </p>
+                                                                    <a href="javascript:;" class="btn btn-sm btn-primary">Read More</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="simplebar-placeholder" style="width: 372px; height: 506px;"></div>
+                                        </div>
+                                        <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                                            <div class="simplebar-scrollbar" style="width: 0px; transform: translate3d(0px, 0px, 0px);display: none;"></div>
+                                        </div>
+                                        <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
+                                            <div class="simplebar-scrollbar" style="height: 177px;transform: translate3d(0px, 0px, 0px);display: block;"></div>
+                                        </div>
+                                    </div>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
 </div>
 

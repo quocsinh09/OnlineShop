@@ -74,9 +74,9 @@ namespace Models.DAO
 
         // Lấy ra các tài khoản admin
         public IEnumerable<User> admins(int page, int pageSize)
-        {   
+        {
 
-            return dbContext.Users.OrderBy(x => x.TypeOfAccount == 0).ToPagedList(page, pageSize);
+            return dbContext.Users.OrderBy(x => x.TypeOfAccount).ToPagedList(page, pageSize);//.Where(x => x.TypeOfAccount == 0)
         }
 
         // Lấy ra danh sách Order
@@ -91,7 +91,6 @@ namespace Models.DAO
             return dbContext.Users.OrderBy(x => x.ID).ToPagedList(page, pageSize);
         }
         
-        //public 
 
     }
     

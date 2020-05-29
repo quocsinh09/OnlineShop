@@ -37,7 +37,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 int id = dao.Insert(product);
                 if (id > 0)
                 {
-                    return RedirectToAction("Index", "Product");
+                    return RedirectToAction("Index");
                 }
                 else
                 {
@@ -49,7 +49,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             
         }
 
-        [HttpGet]
+
         // GET: Admin/ProductCategory/Edit/5
         public ActionResult Edit(int id)
         {
@@ -67,7 +67,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 var result = dao.Update(product);
                 if (result)
                 {
-                    return RedirectToAction("Index", "Product");
+                    return RedirectToAction("Index");
                 }
                 else
                 {
@@ -79,33 +79,11 @@ namespace OnlineShop.Areas.Admin.Controllers
         }
 
 
-
-        // GET: Admin/ProductCategory/Delete/5
-        //[HttpGet]
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        // POST: Admin/ProductCategory/Delete/5
-        [HttpPost]
+        [HttpDelete]
         public ActionResult Delete(int id)
         {
-            if (ModelState.IsValid)
-            {
-                var dao = new ProductDAO();
-                var result = dao.Delete(id);
-                if (result)
-                {
-                    return RedirectToAction("Index", "Product");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Cập nhật sản phẩm không thành công");
-                    //return View("Index");
-                }
-            }
-            return View();
+            var dao = new ProductDAO().Remove(id);
+            return RedirectToAction("Index");
         }
     }
 }

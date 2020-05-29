@@ -20,8 +20,8 @@
         <!-- Button -->
         <div class="table-data__tool">
             <div class="table-data__tool-right">
-                <button class="au-btn au-btn-icon au-btn--green au-btn--small pull-right">
-                    <i class="zmdi zmdi-plus"></i>@Html.ActionLink("Thêm sản phẩm", "Create", "Product", new { @class = "text-white " })
+                <button class="au-btn au-btn-icon au-btn--green au-btn--small pull-left">
+                    <i class="zmdi zmdi-plus"></i>@Html.ActionLink("Thêm sản phẩm", "Create",null, new { @class = "text-white " })
                 </button>
             </div>
         </div>
@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive table--no-card m-b-30">
-                    <table class=" table-borderless table-striped table-earning">
+                    <table class="table table-borderless table-striped table-earning">
                         <thead>
                             <tr>
                                 <th>Mã</th>
@@ -49,14 +49,21 @@
                                     <td>@item.Quanity</td>
                                     <td>
                                         <div class="table-data-feature">
-                                            <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa">
-                                                @Html.ActionLink(" ", "Edit", "Product", new { id = @item.ProductCode }, new { @class = "zmdi zmdi-edit" })
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa">  
+                                                @Html.ActionLink(" ", "Edit", new { id = @item.ProductCode }, new { @class = "zmdi zmdi-edit" })
                                             </button>
 
-                                            <button class="item" data-toggle="modal" data-placement="top" title="" data-target="#del_@item.ProductCode" data-original-title="Xóa">
+                                            @Ajax.ActionLink("Xóa", "Delete", new {id = @item.ProductCode }, new AjaxOptions
+                                       {
+                                           Confirm = "Bạn có chắc muốn xóa sản phẩm này",   
+                                           OnComplete = "$('row_" + @item.ProductCode + "').remove()",
+                                           HttpMethod = "Delete"
+                                       })
+                                            @*<button class="item" data-toggle="modal" data-placement="top" title="" data-target="#del_@item.ProductCode" data-original-title="Xóa">
                                                 <i class="zmdi zmdi-delete"></i>
-                                                @*@Html.ActionLink(" ", "Delete", "Product", new { id = @item.ProductCode }, new { @class = "zmdi zmdi-delete" })*@
+                                                @Html.ActionLink(" ", "Delete", "Product", new { id = @item.ProductCode }, new { @class = "zmdi zmdi-delete" })
                                             </button>
+
                                             <div class="modal fade" id="del_@item.ProductCode" data-backdrop="static" data-keyboard="false">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
@@ -79,7 +86,7 @@
                                                             <button type="button" class="btn btn-info btn-fill left" data-dismiss="modal" aria-label="Quay lại">Quay lại</button>
                                                             @*<button type="submit" class="btn btn-info btn-fill pull-right  m-r-10">
                                                                 @Html.ActionLink("Xác nhận", "Delete", "Product", new { id = @item.ProductCode }, new { @class = "text-white " })
-                                                            </button>*@
+                                                            </button>
                                                             @using (Html.BeginForm("", "Product", new { id = "FilterClick" }, FormMethod.Post, null))
                                                             {
                                                                 <input type="submit" class="smallbutton" id="Delete" value="Xác nhận" />                
@@ -88,7 +95,7 @@
 
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>*@
                                         </div>
                                     </td>
                                     

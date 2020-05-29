@@ -16,6 +16,9 @@ namespace OnlineShop.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var order = new OrderDAO();
+            var getInfo = new HomeDAO();
+            var model = order.List(1, 10);
+            
             if (Session["Admin"] == null)
             {
                 return RedirectToAction("Index", "Login");
@@ -23,7 +26,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             else
             {
                 //var model = order.numberOfMember();
-                return View(order);
+                return View(getInfo);
             }
         }
         [HttpGet]

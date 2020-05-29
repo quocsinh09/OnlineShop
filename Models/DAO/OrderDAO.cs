@@ -97,65 +97,9 @@ namespace Models.DAO
                             username = x.username
                         });
 
-            return model.OrderByDescending(x => x.Name).ToPagedList(pageIndex, pageSize);   //.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            return model.OrderByDescending(x => x.OrderDate).ToPagedList(pageIndex, pageSize);   //.Skip((pageIndex - 1) * pageSize).Take(pageSize);
             //return model.ToList();
         }
-        //public List<OrderViewModel> Search(string keyword, ref int totalRecord, int pageIndex = 1, int pageSize = 2)
-        //{
-        //    totalRecord = dbContext.Orders.Where(x => x.Name == keyword).Count();
-        //    var model = (from a in dbContext.Orders
-        //                 join b in dbContext.OrderCategories
-        //                 on a.CategoryID equals b.ID
-        //                 where a.Name.Contains(keyword)
-        //                 select new
-        //                 {
-        //                     CateMetaTitle = b.MetaTitle,
-        //                     CateName = b.Name,
-        //                     CreatedDate = a.CreatedDate,
-        //                     ID = a.ID,
-        //                     Images = a.Image,
-        //                     Name = a.Name,
-        //                     MetaTitle = a.MetaTitle,
-        //                     Price = a.Price
-        //                 }).AsEnumerable().Select(x => new OrderViewModel()
-        //                 {
-        //                     CateMetaTitle = x.MetaTitle,
-        //                     CateName = x.Name,
-        //                     CreatedDate = x.CreatedDate,
-        //                     ID = x.ID,
-        //                     Images = x.Images,
-        //                     Name = x.Name,
-        //                     MetaTitle = x.MetaTitle,
-        //                     Price = x.Price
-        //                 });
-        //    model.OrderByDescending(x => x.CreatedDate).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-        //    return model.ToList();
-        //}
-        ///// <summary>
-        ///// List feature product
-        ///// </summary>
-        ///// <param name="top"></param>
-        ///// <returns></returns>
-        //public List<Order> ListFeatureOrder(int top)
-        //{
-        //    return dbContext.Orders.Where(x => x.TopHot != null && x.TopHot > DateTime.Now).OrderByDescending(x => x.CreatedDate).Take(top).ToList();
-        //}
-        //public List<Order> ListRelatedOrders(long productId)
-        //{
-        //    var product = dbContext.Orders.Find(productId);
-        //    return dbContext.Orders.Where(x => x.ID != productId && x.CategoryID == product.CategoryID).ToList();
-        //}
-
-        //public void UpdateImages(long productId, string images)
-        //{
-        //    var product = dbContext.Orders.Find(productId);
-        //    product.MoreImages = images;
-        //    dbContext.SaveChanges();
-        //}
-        //public Order ViewDetail(long id)
-        //{
-        //    return dbContext.Orders.Find(id);
-        //}
         public SqlDataReader sqlConnect(string select)
         {
             SqlConnection sqlConnection = new SqlConnection("data source=.;initial catalog=OnlShopCNPM;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
@@ -167,46 +111,15 @@ namespace Models.DAO
             SqlDataReader dataReader = sqlCommand.ExecuteReader();
             return dataReader;
         }
-
-        public int numberOfOrder()
-        {
-            var result = dbContext.Orders.Count();
-            return result;
-        }
-        public int numberOfMember()
-        {
-            var result = dbContext.Users.Count();
-            return result;
-        }
-        public string totalEarning()
-        {
-            SqlDataReader dataReader = sqlConnect("select sum(Price)  as totalEarning from OrderDetail");
-            int result = 0;
-            while (dataReader.Read())
-            {
-                result = int.Parse(dataReader["totalEarning"].ToString());
-            }
-            string whatYouWant = result.ToString("#,##0");
-            return whatYouWant;
-        }
-        public int thisWeek()
-        {
-            SqlDataReader dataReader = sqlConnect("SELECT *from [OnlShopCNPM].[dbo].[Order] where datediff(day, OrderDate,Getdate()) <= 7 ");
-            int result = 0;
-            while (dataReader.Read()) { result++; }
-            return result;
-        }
-
-        public User GetByID(string Username)
-        {
-            return dbContext.Users.SingleOrDefault(x => x.Username == Username);
-        }
         public string getTotal(int month)
         {
             SqlDataReader dataReader = sqlConnect("SELECT sum(od.Amount*od.Price) as total from [OnlShopCNPM].[dbo].[Order] as o join [OnlShopCNPM].[dbo].[OrderDetail] as od on o.ID = od.OrderID where MONTH(o.OrderDate) = " + month + "  and o.Status = 'complete' ");
             string result = "";
-            while (dataReader.Read()) { result = (dataReader["total"].ToString()); }
-            return result;
+            while (dataReader.Read())
+            {
+                result = dataReader["total"].ToString();
+            }
+            return result; 
         }
     }
 }

@@ -32,6 +32,7 @@
 
     <!-- Main CSS-->
     <link href="/Assets/css/theme.css" rel="stylesheet" media="all">
+    <link href="~/Assets/css/Custom.css" rel="stylesheet" />
 
 </head>
 
@@ -56,23 +57,23 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
                         <li>
-                            <a href="~/Areas/Admin/Views/Home/Index.cshtml">
+                            <a href="@Url.Action("Index", "Home", new { area = "Admin" })">
                                 <i class="fas fa-globe"></i>Tổng quan
                             </a>
                         </li>
                         <li>
-                            <a href="../Product/Index">
+                            <a href="@Url.Action("Index", "Product", new { area = "Admin" })">
                                 <i class="fas fa-file-text"></i> Quản lý sản phẩm
                             </a>
                         </li>
 
                         <li>
-                            <a href="../User/Index">
+                            <a href="@Url.Action("Index", "User", new { area = "Admin" })">
                                 <i class="fas fa-chart-bar"></i>Quản lý tài khoản
                             </a>
                         </li>
                         <li>
-                            <a href="../Order/Index">
+                            <a href="@Url.Action("Index", "Order", new { area = "Admin" })">
                                 <i class="fas fa-table"></i>Đơn hàng
                             </a>
                         </li>
@@ -83,7 +84,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src=" /Assets/images/icon/logo.png" alt="Cool Admin" />
+                    <img src="@Url.Content("~/Assets/images/icon/logo.png")" alt="Cool Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -91,23 +92,23 @@
 
                     <ul class="list-unstyled navbar__list">
                         <li>
-                            <a href="../Home/Index">
+                            <a href="@Url.Action("Index", "Home", new { area = "Admin" })">
                                 <i class="fas fa-globe"></i>Tổng quan
                             </a>
                         </li>
                         <li>
-                            <a href="../Product/Index">
+                            <a href="@Url.Action("Index", "Product", new { area = "Admin" })">
                                 <i class="fas fa-archive"></i> Quản lý sản phẩm
                             </a>
                         </li>
 
                         <li>
-                            <a href="../User/Index">
+                            <a href="@Url.Action("Index", "User", new { area = "Admin" })">
                                 <i class="fas fa-users"></i>Quản lý tài khoản
                             </a>
                         </li>
                         <li>
-                            <a href="../Order/Index">
+                            <a href="@Url.Action("Index", "Order", new { area = "Admin" })">
                                 <i class="fas fa-table"></i>Đơn hàng
                             </a>
                         </li>
@@ -177,6 +178,7 @@
 
     <!-- Jquery JS-->
     <script src="/Assets/vendor/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <!-- Bootstrap JS-->
     <script src="/Assets/vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="/Assets/vendor/bootstrap-4.1/bootstrap.min.js"></script>

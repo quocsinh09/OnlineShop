@@ -11,7 +11,7 @@ namespace Models.DAO
 {
     public class ProductDAO
     {
-        
+
         OnlineShopDbContext dbContext = null;
         public ProductDAO()
         {
@@ -54,35 +54,39 @@ namespace Models.DAO
         // Cập nhật sản phẩm | Sửa/Xóa
         public bool Update(Product entity)
         {
-            try
+            var product = dbContext.Products.Find(entity.ProductCode);
+            if (product != null)
             {
-                var product = dbContext.Products.Find(entity.ProductCode);
-                product.ProductCode = entity.ProductCode;
-                product.Name = entity.Name;
-                product.MetaTitle = entity.MetaTitle;
-                product.Description = entity.Description;
-                product.MetaDescription = entity.MetaDescription;
-                product.ImageFirst = entity.ImageFirst;
-                product.ImageSecond = entity.ImageSecond;
-                product.Price = entity.Price;
-                product.PercentSale = entity.PercentSale;
-                product.Promotion = entity.Promotion;
-                product.CategoryIDParent = entity.CategoryIDParent;
-                product.CategoryIDChild = entity.CategoryIDChild;
-                product.CreatedDate = DateTime.Now;
-                product.Quanity = entity.Quanity;
-                product.Status = entity.Status;
-                product.BuyCount = entity.BuyCount;
-                product.ViewCount = entity.ViewCount;
-                product.ReviewPoint = entity.ReviewPoint;
-                dbContext.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
+                try
+                {
+                    product.ProductCode = entity.ProductCode;
+                    product.Name = entity.Name;
+                    product.MetaTitle = entity.MetaTitle;
+                    product.Description = entity.Description;
+                    product.MetaDescription = entity.MetaDescription;
+                    product.ImageFirst = entity.ImageFirst;
+                    product.ImageSecond = entity.ImageSecond;
+                    product.Price = entity.Price;
+                    product.PercentSale = entity.PercentSale;
+                    product.Promotion = entity.Promotion;
+                    product.CategoryIDParent = entity.CategoryIDParent;
+                    product.CategoryIDChild = entity.CategoryIDChild;
+                    product.CreatedDate = DateTime.Now;
+                    product.Quanity = entity.Quanity;
+                    product.Status = entity.Status;
+                    product.BuyCount = entity.BuyCount;
+                    product.ViewCount = entity.ViewCount;
+                    product.ReviewPoint = entity.ReviewPoint;
+                    dbContext.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    //*TODO* log exception
+                }
 
             }
+            return false;
         }
 
         // Xoa san pham
@@ -98,6 +102,22 @@ namespace Models.DAO
         public Product ViewDetail(int Id)
         {
             return dbContext.Products.Find(Id);
+        }
+
+        public bool Remove(int id)
+        {
+            try
+            {
+                var product = dbContext.Products.Find(id);
+                dbContext.Products.Remove(product);
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            
         }
         /// <summary>
         /// Get list product by category

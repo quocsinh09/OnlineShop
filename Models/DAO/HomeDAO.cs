@@ -29,13 +29,11 @@ namespace Models.DAO
 
         public int numberOfOrder()
         {
-            var result = dbContext.Orders.Count();
-            return result;
+            return dbContext.Orders.Count();
         }
         public int numberOfMember()
         {
-            var result = dbContext.Users.Count();
-            return result;
+            return dbContext.Users.Where(x => x.TypeOfAccount == 1).Count();
         }
         public string totalEarning()
         {
@@ -64,8 +62,12 @@ namespace Models.DAO
         {
             SqlDataReader dataReader = sqlConnect("SELECT sum(od.Amount*od.Price) as total from [OnlShopCNPM].[dbo].[Order] as o join [OnlShopCNPM].[dbo].[OrderDetail] as od on o.ID = od.OrderID where MONTH(o.OrderDate) = " + month + "  and o.Status = 'complete' ");
             string result = "";
-            while (dataReader.Read()) { result = (dataReader["total"].ToString()); }
+            while (dataReader.Read())
+            {
+                result = dataReader["total"].ToString();
+            }
             return result;
+
         }
 
     }

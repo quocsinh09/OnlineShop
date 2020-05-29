@@ -26,6 +26,7 @@ namespace OnlineShop.Areas.Admin.Controllers
 
             return View();
         }
+
         /*public ActionResult Create(Admin _admin)
         {
             if (ModelState.IsValid)
