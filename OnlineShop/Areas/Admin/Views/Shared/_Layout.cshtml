@@ -10,7 +10,7 @@
 
 
     <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>@ViewBag.Title</title>
 
     <!-- Fontfaces CSS-->
     <link href="/Assets/css/font-face.css" rel="stylesheet" media="all">
@@ -42,8 +42,8 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                            <img src=" /Assets/images/icon/logo.png" alt="Admin" />
+                        <a class="logo" href="@Url.Action("Index", "Home", new { area = "Admin" })">
+                            <img src=" /Assets/images/icon/logo-blue.png" alt="Admin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -63,13 +63,13 @@
                         </li>
                         <li>
                             <a href="@Url.Action("Index", "Product", new { area = "Admin" })">
-                                <i class="fas fa-file-text"></i> Quản lý sản phẩm
+                                <i class="fas fa-file-text"></i>Sản phẩm
                             </a>
                         </li>
 
                         <li>
                             <a href="@Url.Action("Index", "User", new { area = "Admin" })">
-                                <i class="fas fa-chart-bar"></i>Quản lý tài khoản
+                                <i class="fas fa-chart-bar"></i>Tài khoản
                             </a>
                         </li>
                         <li>
@@ -83,8 +83,8 @@
         </header>
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
-                    <img src="@Url.Content("~/Assets/images/icon/logo.png")" alt="Cool Admin" />
+                <a href="@Url.Action("Index", "Home", new { area = "Admin" })">
+                    <img src="@Url.Content("~/Assets/images/icon/logo-blue.png")" alt="Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -98,13 +98,13 @@
                         </li>
                         <li>
                             <a href="@Url.Action("Index", "Product", new { area = "Admin" })">
-                                <i class="fas fa-archive"></i> Quản lý sản phẩm
+                                <i class="fas fa-archive"></i> Sản phẩm
                             </a>
                         </li>
 
                         <li>
                             <a href="@Url.Action("Index", "User", new { area = "Admin" })">
-                                <i class="fas fa-users"></i>Quản lý tài khoản
+                                <i class="fas fa-users"></i>Tài khoản
                             </a>
                         </li>
                         <li>
@@ -153,9 +153,10 @@
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
-                                                    @Html.ActionLink("Account", "Account", "Home")
+                                                    @Html.ActionLink("Account", "Account", "Home", new { style = "padding: 15px 25px"})
                                                 </div>
                                             </div>
+             
                                             <div class="account-dropdown__footer">
                                                 @Html.ActionLink("Đăng xuất", "Index", "Login")
                                             </div>

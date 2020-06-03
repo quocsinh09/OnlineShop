@@ -1,0 +1,5 @@
+C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\Common\bin\Debug\Common.dll
+C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\Common\bin\Debug\Common.pdb
+C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\Common\obj\Debug\Common.dll
+C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\Common\obj\Debug\Common.pdb

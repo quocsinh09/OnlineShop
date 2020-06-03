@@ -1,4 +1,5 @@
 ﻿@{ 
+    ViewBag.Title = "Đăng nhập";
     Layout = null;
 }
 
@@ -15,7 +16,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Login</title>
+    <title>@ViewBag.Title</title>
 
     <!-- Fontfaces CSS-->
     <link href="/Assets/css/font-face.css" rel="stylesheet" media="all">
@@ -47,7 +48,7 @@
                     <div class="login-content">
                         <div class="login-logo">
                             <a href="#">
-                                <img src="/Assets/images/icon/logo.png" alt="CoolAdmin">
+                                <img src="/Assets/images/icon/logo-blue.png" alt="CoolAdmin">
                             </a>
                         </div>
                         <div class="login-form">
@@ -56,6 +57,7 @@
                             {
                                 @Html.AntiForgeryToken()
                                 {
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger list-nostyled" })
                                     <form action="" method="post">
                                         <div class="form-group">
                                             <label>Tài  khoản</label>
@@ -64,15 +66,22 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
-                                            @Html.TextBoxFor(model => model.Password, new { @class = "au-input au-input--full", @placeholder = "Mật khẩu", @type = "password"})
+                                            @Html.TextBoxFor(model => model.Password, new { @class = "au-input au-input--full ", @placeholder = "Mật khẩu", @type = "password" })
+                                            <span class="pull-right m-b-15">
+                                                <input type="checkbox" id="pass" onclick="if(Password.type=='text')Password.type='password'; else Password.type='text';" />
+                                                Hiện mật khẩu
+                                            </span>
+                                            
                                             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger " })
                                         </div>
-                                       
                                         <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Đăng nhập</button>
+                                        
                                     </form>
                                 }
                             }
-
+                            <button class="au-btn au-btn--block au-btn--blue2">
+                                @Html.ActionLink("Quên mật khẩu", "ForgotPassword", null, new { @class = "text-white" })
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -80,24 +89,11 @@
         </div>
 
     </div>
-
+   
     <!-- Jquery JS-->
     <script src="/Assets/vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
-    
     <script src="/Assets/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- /Assets/vendor JS       -->
-    <script src="/Assets/vendor/slick/slick.min.js"></script>
-    <script src="/Assets/vendor/wow/wow.min.js"></script>
-    <script src="/Assets/vendor/animsition/animsition.min.js"></script>
-    <script src="/Assets/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <script src="/Assets/vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="/Assets/vendor/counter-up/jquery.counterup.min.js"></script>
-    <script src="/Assets/vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="/Assets/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="/Assets/vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="/Assets/vendor/select2/select2.min.js"></script>
-
     <!-- Main JS-->
     <script src="/Assets/js/main.js"></script>
 

@@ -2,7 +2,7 @@
 @using PagedList.Mvc;
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Sản phẩm";
     Layout = "../Shared/_Layout.cshtml";
     var admin = Session["Admin"] as Models.EF.User;
 }
@@ -48,59 +48,18 @@
                                     <td data-toggle="modal" data-target="#@item.ProductCode">@item.Name</td>
                                     <td>@item.Quanity</td>
                                     <td>
-                                        <div class="table-data-feature">
-                                            <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa">  
-                                                @Html.ActionLink(" ", "Edit", new { id = @item.ProductCode }, new { @class = "zmdi zmdi-edit" })
-                                            </button>
-
-                                            @Ajax.ActionLink("Xóa", "Delete", new {id = @item.ProductCode }, new AjaxOptions
-                                       {
-                                           Confirm = "Bạn có chắc muốn xóa sản phẩm này",   
-                                           OnComplete = "$('row_" + @item.ProductCode + "').remove()",
-                                           HttpMethod = "Delete"
-                                       })
-                                            @*<button class="item" data-toggle="modal" data-placement="top" title="" data-target="#del_@item.ProductCode" data-original-title="Xóa">
-                                                <i class="zmdi zmdi-delete"></i>
-                                                @Html.ActionLink(" ", "Delete", "Product", new { id = @item.ProductCode }, new { @class = "zmdi zmdi-delete" })
-                                            </button>
-
-                                            <div class="modal fade" id="del_@item.ProductCode" data-backdrop="static" data-keyboard="false">
-                                                <div class="modal-dialog modal-lg">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="card-title">@item.Name</h4>
-                                                            <button type="button" class="close" data-dismiss="modal">×</button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="card">
-                                                                        <div class="card-body">
-                                                                            Bạn có chắc muốn xóa sản phẩm này
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-info btn-fill left" data-dismiss="modal" aria-label="Quay lại">Quay lại</button>
-                                                            @*<button type="submit" class="btn btn-info btn-fill pull-right  m-r-10">
-                                                                @Html.ActionLink("Xác nhận", "Delete", "Product", new { id = @item.ProductCode }, new { @class = "text-white " })
-                                                            </button>
-                                                            @using (Html.BeginForm("", "Product", new { id = "FilterClick" }, FormMethod.Post, null))
-                                                            {
-                                                                <input type="submit" class="smallbutton" id="Delete" value="Xác nhận" />                
-                                                            }
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>*@
-                                        </div>
-                                    </td>
-                                    
-                                </tr>
-                                   
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa">  
+                                            @Html.ActionLink("Sửa", "Edit", new { id = @item.ProductCode })
+                                        </button>
+                                        |
+                                        @Ajax.ActionLink("Xóa", "Delete", new { id = @item.ProductCode }, new AjaxOptions
+                                        {
+                                            Confirm = "Bạn có chắc muốn xóa sản phẩm này",
+                                            OnComplete = "$('row_" + @item.ProductCode + "').remove()",
+                                            HttpMethod = "Delete"
+                                        })
+                                    </td>  
+                                </tr>   
                                 <!--Modal for Product detail-->
                                  <div class="modal fade" id="@item.ProductCode"  data-keyboard="false" >
                                     <div class="modal-dialog modal-lg">
@@ -118,7 +77,7 @@
                                                                 <label class="col-md-2 col-form-label">Tên sản phẩm</label>
                                                                 <div class="input-group col">
                                                                     <div style="width:100% ">
-                                                                        <input class="form-control" placeholder="@item.Name" />
+                                                                        <input class="form-control" placeholder=@item.Name value="@item.Name" readonly/>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -128,7 +87,7 @@
                                                                 <label class="col-md-2 col-form-label">Link sản phẩm</label>
                                                                 <div class="input-group col">
                                                                     <div style="width:100% ">
-                                                                        <input class="form-control" placeholder="@item.MetaTitle" />
+                                                                        <input class="form-control" placeholder=@item.MetaTitle value=@item.MetaTitle readonly />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -138,7 +97,7 @@
                                                                 <label class="col-md-2 col-form-label">Mô tả chi tiết</label>
                                                                 <div class="input-group col">
                                                                     <div style="width:100% ">
-                                                                        <input class="form-control" placeholder="@item.Description" />
+                                                                        <input class="form-control" placeholder=@item.Description value=@item.Description readonly />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -147,7 +106,7 @@
                                                                 <label class="col-md-2 col-form-label">Mô tả chung</label>
                                                                 <div class="input-group col">
                                                                     <div style="width:100% ">
-                                                                        <input class="form-control" placeholder="@item.MetaDescription" />
+                                                                        <input class="form-control" placeholder=@item.MetaDescription value=@item.MetaDescription readonly />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -156,10 +115,10 @@
                                                                 <label class="col-md-2 col-form-label">Ảnh sản phẩm</label>
                                                                 <div class="input-group col">
                                                                     <div class="row col">
-                                                                        <input class="form-control" placeholder="@item.ImageFirst" />
+                                                                        <input class="form-control" placeholder=@item.ImageFirst value=@item.ImageFirst readonly />
                                                                     </div>
                                                                     <div class="row col">
-                                                                        <input class="form-control" placeholder="@item.ImageSecond" />
+                                                                        <input class="form-control" placeholder=@item.ImageSecond value=@item.ImageSecond readonly />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -169,13 +128,13 @@
                                                                 <div class="col">
                                                                     <div class="input-group">
                                                                         <div class="row col">
-                                                                            <input class="form-control" placeholder="@item.Price" />
+                                                                            <input class="form-control" placeholder=@item.Price value=@item.Price readonly />
                                                                         </div>
                                                                         <div class="row col">
-                                                                            <input class="form-control" placeholder="@item.PercentSale" />
+                                                                            <input class="form-control" placeholder=@item.PercentSale value=@item.PercentSale readonly />
                                                                         </div>
                                                                         <div class="row col">
-                                                                            <input class="form-control" placeholder="@item.Promotion" />
+                                                                            <input class="form-control" placeholder=@item.Promotion value=@item.Promotion readonly />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -186,27 +145,10 @@
                                                                 <div class="col">
                                                                     <div class="input-group">
                                                                         <div class="row col">
-                                                                            <input class="form-control" placeholder="@item.CategoryIDParent" />
+                                                                            <input class="form-control" placeholder=@item.CategoryIDParent value=@item.CategoryIDParent readonly />
                                                                         </div>
                                                                         <div class="row col">
-                                                                            <input class="form-control" placeholder="@item.CategoryIDChild" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group row">
-
-                                                                <div class="col">
-                                                                    <div class="input-group">
-                                                                        <div class="row col">
-                                                                            <input class="form-control" placeholder="@item.CreatedDate" />
-                                                                        </div>
-                                                                        <div class="row col">
-                                                                            <input class="form-control" placeholder="@item.Quanity" />
-                                                                        </div>
-                                                                        <div class="row col">
-                                                                            <input class="form-control" placeholder="@item.Status" />
+                                                                            <input class="form-control" placeholder=@item.CategoryIDChild value=@item.CategoryIDChild readonly />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -217,13 +159,30 @@
                                                                 <div class="col">
                                                                     <div class="input-group">
                                                                         <div class="row col">
-                                                                            <input class="form-control" placeholder="@item.BuyCount" />
+                                                                            <input class="form-control" placeholder=@item.CreatedDate value=@item.CreatedDate readonly />
                                                                         </div>
                                                                         <div class="row col">
-                                                                            <input class="form-control" placeholder="@item.ViewCount" />
+                                                                            <input class="form-control" placeholder=@item.Quanity value=@item.Quanity readonly />
                                                                         </div>
                                                                         <div class="row col">
-                                                                            <input class="form-control" placeholder="@item.ReviewPoint" />
+                                                                            <input class="form-control" placeholder=@item.Status value=@item.Status readonly />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+
+                                                                <div class="col">
+                                                                    <div class="input-group">
+                                                                        <div class="row col">
+                                                                            <input class="form-control" placeholder=@item.BuyCount value=@item.BuyCount readonly />
+                                                                        </div>
+                                                                        <div class="row col">
+                                                                            <input class="form-control" placeholder=@item.ViewCount value=@item.ViewCount readonly />
+                                                                        </div>
+                                                                        <div class="row col">
+                                                                            <input class="form-control" placeholder=@item.ReviewPoint value=@item.ReviewPoint readonly />
                                                                         </div>
                                                                     </div>
                                                                 </div>

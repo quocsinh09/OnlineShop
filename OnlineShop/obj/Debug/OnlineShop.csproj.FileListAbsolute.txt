@@ -59,3 +59,5 @@ C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\OnlineShop\bin\P
 C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\OnlineShop\bin\PagedList.xml
 C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\OnlineShop\bin\PagedList.Mvc.xml
 C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\OnlineShop\obj\Debug\OnlineShop.csprojResolveAssemblyReference.cache
+C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\OnlineShop\bin\Common.dll
+C:\Users\quocs\documents\visual studio 2013\Projects\OnlineShop\OnlineShop\bin\Common.pdb

@@ -26,24 +26,42 @@ namespace OnlineShop.Areas.Admin.Controllers
 
             return View();
         }
+        public ActionResult LockUser(string username)
+        {
+            var dao = new UserDAO().LockUser(username);
 
-        /*public ActionResult Create(Admin _admin)
+            return View("MemberAccount");
+        }
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(User user)
         {
             if (ModelState.IsValid)
             {
-                var dataAccessObj = new UserDAO();
-                int id = dataAccessObj.Insert(_admin);
-                if (id > 0)
+                var dao = new UserDAO();
+                int added = dao.Insert(user);
+                if (added == 1)
                 {
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("Index");
+                }
+                else if (added == -1)
+                {
+                    ModelState.AddModelError("", "Đã tồn tại tài khoản tên : " + user.Username);
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Succed");
+                    ModelState.AddModelError("", "Voo ly");
+                    //return View("Index");
                 }
             }
-            return View("Index");
-            
-        }*/
+            return View(user);
+
+        }
+
     }
 }

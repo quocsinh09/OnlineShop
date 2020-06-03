@@ -15,8 +15,7 @@
     @admin.Email
 }
 
-
-
+<div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
@@ -38,55 +37,58 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td id="img-account p-t-10">
-                                        <img class="account" src="~/Assets/images/icon/avatar-01.jpg" alt="account">
-                                    </td>
-                                    <td>
-                                        <div class="table-data__info">
-                                            <h6>@item.Name</h6>
-                                            <span>
-                                                <a>@item.Email</a>
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="role admin">@item.Status</span>
-                                    </td>
-                                    <td>
-                                        <div class="rs-select2--trans rs-select2--sm">
-                                            <select class="js-select2" name="property">
-                                                <option selected="selected">Toàn quyền</option>
-                                                <option value="">Xem</option>
-                                                <option value="">Đăng</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
-                                    </td>
-                                    <td>@item.Mobile</td>
-                                    <td>
-                                        <div class="table-data-feature">
-                                            <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa">
-                                                <i class="zmdi zmdi-edit"></i>
-                                            </button>
-                                            <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xóa">
-                                                <i class="zmdi zmdi-delete"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
-                                
-                                
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td id="img-account p-t-10">
+                                            <img class="account" src="~/Assets/images/icon/avatar-01.jpg" alt="account">
+                                        </td>
+                                        <td>
+                                            <div class="table-data__info">
+                                                <h6>@item.Name</h6>
+                                                <span>
+                                                    <a>@item.Email</a>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="role admin">@item.Status</span>
+                                        </td>
+                                        <td>
+                                            <div class="rs-select2--trans rs-select2--sm">
+                                                <select class="js-select2" name="property">
+                                                    <option selected="selected">Toàn quyền</option>
+                                                    <option value="">Xem</option>
+                                                    <option value="">Đăng</option>
+                                                </select>
+                                                <div class="dropDownSelect2"></div>
+                                            </div>
+                                        </td>
+                                        <td>@item.Mobile</td>
+                                        <td>
+                                            <div class="table-data-feature">
+                                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa">
+                                                    <i class="zmdi zmdi-edit"></i>
+                                                </button>
+                                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xóa">
+                                                    <i class="zmdi zmdi-delete"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+
                             </tbody>
                         </table>
                     </div>
-                    
+
                 </div>
                 <!-- thong tin tai khoan-->
             </div>
         </div>
     </div>
-
+</div>
+<button type="button" class="btn btn-info btn-fill pull-left m-l-10">
+    @Html.ActionLink("Tạo tài khoản", "Create", null, new { style = "color: white" })
+</button>

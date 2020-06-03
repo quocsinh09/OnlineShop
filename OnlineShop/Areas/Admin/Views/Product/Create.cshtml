@@ -1,7 +1,7 @@
 ﻿@model Models.EF.Product
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Thêm sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     var admin = Session["Admin"] as Models.EF.User;
 }
@@ -34,8 +34,6 @@
                  </div>
             </div>
 
-
-            
 
             <div class="form-group row">
                 <label class="col-md-2 col-form-label">Link sản phẩm</label>
@@ -87,11 +85,11 @@
                 <div class="col">
                     <div class="input-group">
                         <div class="row col">
-                            @Html.TextBoxFor(model => model.Price, new { @class = "form-control", @placeholder = "Giá cơ bản" })
+                            @Html.TextBoxFor(model => model.Price, new { @class = "form-control", @placeholder = "Giá cơ bản" ,@type = "number"})
                             @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
                         </div>
                         <div class="row col">
-                            @Html.TextBoxFor(model => model.PercentSale, new { @class = "form-control", @placeholder = "Giảm giá" })
+                            @Html.TextBoxFor(model => model.PercentSale, new { @class = "form-control", @placeholder = "Giảm giá"})
                             @Html.ValidationMessageFor(model => model.PercentSale, "", new { @class = "text-danger" })
                         </div>
                         <div class="list-group-item">
@@ -125,11 +123,11 @@
                 <div class="col">
                     <div class="input-group">
                         <div class="row col">
-                            @Html.TextBoxFor(model => model.CreatedDate, new { @class = "form-control", @placeholder = "Ngày thêm sản phẩm" })
+                            @Html.TextBoxFor(model => model.CreatedDate, new { @class = "form-control", @placeholder = "Ngày thêm sản phẩm", @type = "date" })
                             @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
                         </div>
                         <div class="row col">
-                            @Html.TextBoxFor(model => model.Quanity, new { @class = "form-control", @placeholder = "Số lượng trong kho" })
+                            @Html.TextBoxFor(model => model.Quanity, new { @class = "form-control", @placeholder = "Số lượng trong kho", @type = "number" })
                             @Html.ValidationMessageFor(model => model.Quanity, "", new { @class = "text-danger" })
                         </div>
                         <div class="list-group-item">
@@ -147,15 +145,15 @@
                 <div class="col">
                     <div class="input-group">
                         <div class="row col">
-                            @Html.TextBoxFor(model => model.BuyCount, new { @class = "form-control", @placeholder = "Giá nhập vào" })
+                            @Html.TextBoxFor(model => model.BuyCount, new { @class = "form-control", @placeholder = "Giá nhập vào", @type = "number" })
                             @Html.ValidationMessageFor(model => model.BuyCount, "", new { @class = "text-danger" })
                         </div>
                         <div class="row col">
-                            @Html.TextBoxFor(model => model.ViewCount, new { @class = "form-control", @placeholder = "Số lượng hiển thị trên trang" })
+                            @Html.TextBoxFor(model => model.ViewCount, new { @class = "form-control", @placeholder = "Số lượng hiển thị trên trang", @type = "number" })
                             @Html.ValidationMessageFor(model => model.ViewCount, "", new { @class = "text-danger" })
                         </div>
                         <div class="row col">
-                            @Html.TextBoxFor(model => model.ReviewPoint, new { @class = "form-control", @placeholder = "Điểm đánh giá" })
+                            @Html.TextBoxFor(model => model.ReviewPoint, new { @class = "form-control", @placeholder = "Điểm đánh giá", @type = "number" })
                             @Html.ValidationMessageFor(model => model.ReviewPoint, "", new { @class = "text-danger" })
                         </div>
                     </div>

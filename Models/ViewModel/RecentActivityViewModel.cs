@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.ViewModel
 {
-    class RecentActivityViewModel
+    public class RecentActivityViewModel
     {
         public Guid ID { get; set; }
 
@@ -37,7 +37,7 @@ namespace Models.ViewModel
 
         public double ReviewPoint { get; set; }
 
-        public DateTime? CreatedDate { get; set; }
+        public DateTime? AddDate { get; set; }
 
 
         public string Name { get; set; }

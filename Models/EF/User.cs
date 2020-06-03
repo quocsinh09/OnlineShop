@@ -1,4 +1,4 @@
-namespace Models.EF
+﻿namespace Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -11,11 +11,11 @@ namespace Models.EF
     {
         public Guid ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vui lòng điền tên đăng nhập")]
         [StringLength(20)]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vui lòng điền mật khẩu")]
         [StringLength(50)]
         public string Password { get; set; }
 
@@ -52,7 +52,7 @@ namespace Models.EF
         [StringLength(50)]
         public string ModifiedBy { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
         public int TypeOfAccount { get; set; }
 

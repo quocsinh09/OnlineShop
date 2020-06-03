@@ -14,7 +14,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         // GET: Admin/ProductCategory
         public ActionResult Index(int page = 1,  int pageSize = 10)
         {
-            var dataAccessObj = new UserDAO();
+            var dataAccessObj = new ProductDAO();
             var model = dataAccessObj.products(page, pageSize);
             return View(model);
         }
@@ -39,14 +39,16 @@ namespace OnlineShop.Areas.Admin.Controllers
                 {
                     return RedirectToAction("Index");
                 }
+                else if (id == 0)
+                {
+                    ModelState.AddModelError("", "Đã tồn tại sản phẩm tên " + product.Name);
+                }
                 else
                 {
                     ModelState.AddModelError("", "Thêm sản phẩm không thành công");
-                    //return View("Index");
                 }
             }
             return View(product);
-            
         }
 
 
@@ -78,12 +80,11 @@ namespace OnlineShop.Areas.Admin.Controllers
 
         }
 
-
         [HttpDelete]
         public ActionResult Delete(int id)
         {
             var dao = new ProductDAO().Remove(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Product");
         }
     }
 }
