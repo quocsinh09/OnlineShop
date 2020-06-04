@@ -1,19 +1,8 @@
 ﻿@model PagedList.IPagedList<Models.EF.Product>
 @using PagedList.Mvc;
-<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Sản phẩm";
     Layout = "../Shared/_Layout.cshtml";
-    var admin = Session["Admin"] as Models.EF.User;
-}
-@section username{
-    @admin.Name
-}
-@section username_dropdown{
-    @admin.Name
-}
-@section email{
-    @admin.Email
 }
 
     <div class="container-fluid">

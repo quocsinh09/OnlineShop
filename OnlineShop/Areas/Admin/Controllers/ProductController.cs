@@ -84,7 +84,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             var dao = new ProductDAO().Remove(id);
-            return RedirectToAction("Index","Product");
+            return RedirectToAction("Index");
         }
     }
 }

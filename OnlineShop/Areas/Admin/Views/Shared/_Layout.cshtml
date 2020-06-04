@@ -32,7 +32,7 @@
 
     <!-- Main CSS-->
     <link href="/Assets/css/theme.css" rel="stylesheet" media="all">
-    <link href="~/Assets/css/Custom.css" rel="stylesheet" />
+    <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -135,7 +135,7 @@
                                             <img src="~/Assets/images/icon/avatar-01.jpg" alt="Profile picture" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">@RenderSection("username", required: true)</a>
+                                            <a class="js-acc-btn" href="#">@(((Models.EF.User)Session["Admin"]).Name)</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix ">
@@ -146,17 +146,15 @@
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="../Home/Account">@RenderSection("username_dropdown", required: true)</a>
+                                                        @Html.ActionLink(((Models.EF.User)Session["Admin"]).Name.ToString(),"Account", "Home")
                                                     </h5>
-                                                    <span class="email">@RenderSection("email", required: true)</span>
+                                                    <span class="email"> @(((Models.EF.User)Session["Admin"]).Email) </span>
                                                 </div>
                                             </div>
-                                            <div class="account-dropdown__body">
-                                                <div class="account-dropdown__item">
-                                                    @Html.ActionLink("Account", "Account", "Home", new { style = "padding: 15px 25px"})
-                                                </div>
+              
+                                            <div class="account-dropdown__footer">
+                                                @Html.ActionLink("Account", "Account", "Home")
                                             </div>
-             
                                             <div class="account-dropdown__footer">
                                                 @Html.ActionLink("Đăng xuất", "Index", "Login")
                                             </div>
@@ -201,6 +199,7 @@
 
     <!-- Main JS-->
     <script src="/Assets/js/main.js"></script>
+    @RenderSection("js",required:false)
 
 </body>
 

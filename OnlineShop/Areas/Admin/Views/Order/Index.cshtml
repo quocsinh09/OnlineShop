@@ -4,16 +4,6 @@
 @{
     ViewBag.Title = "Đơn hàng";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    var admin = Session["Admin"] as Models.EF.User;
-}
-@section username{
-    @admin.Name
-}
-@section username_dropdown{
-    @admin.Name
-}
-@section email{
-    @admin.Email
 }
 
 <div class="container-fluid">
@@ -40,7 +30,7 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td data-toggle="modal" data-target="#@item.ProductCode">@item.ID</td>
+                            <td data-toggle="modal" data-target="#@item.ProductCode">@item.ID.ToString().Substring(0,8)</td>
                             <td data-toggle="modal" data-target="#@item.ID"> @item.Name</td>
                             <td> @item.OrderDate </td>
                             <td>@item.ShippedDate</td>

@@ -3,16 +3,10 @@
 @{
     ViewBag.Title = "Người dùng";
     Layout = "../Shared/_Layout.cshtml";
-    var admin = Session["Admin"] as Models.EF.User;
+    string admin = "role admin";
 }
-@section username{
-    @admin.Name
-}
-@section username_dropdown{
-    @admin.Name
-}
-@section email{
-    @admin.Email
+@section js{
+    <script src="~/Assets/js/controller/userController.js"></script>
 }
 
 <div class="content">
@@ -28,7 +22,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <td class="de-muc"> </td>
+                                    <td     > </td>
                                     <td class="de-muc">Tên tài khoản</td>
                                     <td class="de-muc">Tình trạng</td>
                                     <td class="de-muc">Quyền hạn</td>
@@ -40,7 +34,7 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td id="img-account p-t-10">
+                                        <td id="img-account p-t-10" class="m-l-10">
                                             <img class="account" src="~/Assets/images/icon/avatar-01.jpg" alt="account">
                                         </td>
                                         <td>
@@ -52,29 +46,23 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="role admin">@item.Status</span>
+                                            <span class="role-admin role member">@(item.Status ? "Đang hoạt động" : "Đã khóa")</span>
                                         </td>
                                         <td>
-                                            <div class="rs-select2--trans rs-select2--sm">
-                                                <select class="js-select2" name="property">
-                                                    <option selected="selected">Toàn quyền</option>
-                                                    <option value="">Xem</option>
-                                                    <option value="">Đăng</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
+                                            <span class=@(item.TypeOfAccount == 2 ? "role+admin" : " role"+"user")>@(item.TypeOfAccount == 2 ? "Toàn quyền" : "Nhân viên")</span>
                                         </td>
                                         <td>@item.Mobile</td>
                                         <td>
                                             <div class="table-data-feature">
-                                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa">
+                                                <button class="edit-user item" data-id=@item.Username data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa">
                                                     <i class="zmdi zmdi-edit"></i>
                                                 </button>
-                                                <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xóa">
+
+                                                <button class="delete-user item" data-id="@item.Username" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xóa">
                                                     <i class="zmdi zmdi-delete"></i>
                                                 </button>
                                             </div>
-                                        </td>
+                                        </td> 
                                     </tr>
                                 }
 
@@ -82,8 +70,8 @@
                             </tbody>
                         </table>
                     </div>
-
-                </div>
+                    
+                </div>@Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
                 <!-- thong tin tai khoan-->
             </div>
         </div>

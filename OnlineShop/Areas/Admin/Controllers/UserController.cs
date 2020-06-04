@@ -26,12 +26,8 @@ namespace OnlineShop.Areas.Admin.Controllers
 
             return View();
         }
-        public ActionResult LockUser(string username)
-        {
-            var dao = new UserDAO().LockUser(username);
 
-            return View("MemberAccount");
-        }
+        
         [HttpGet]
         public ActionResult Create()
         {
@@ -44,24 +40,47 @@ namespace OnlineShop.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new UserDAO();
-                int added = dao.Insert(user);
+                int added = dao.InsertBy(user, (User)Session["Admin"]);
                 if (added == 1)
                 {
                     return RedirectToAction("Index");
                 }
-                else if (added == -1)
+                else 
                 {
-                    ModelState.AddModelError("", "Đã tồn tại tài khoản tên : " + user.Username);
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Voo ly");
-                    //return View("Index");
+                    ModelState.AddModelError("", dao.AccountError(user, added));
                 }
             }
             return View(user);
-
         }
 
+        [HttpPost]
+        public JsonResult Delete(string username)
+        {
+            var dao = new UserDAO().DeleteAccount(username, ((User)Session["Admin"]).TypeOfAccount);
+            return Json(new
+            {
+                delete = dao
+            });
+        }
+
+        [HttpPost]
+        public JsonResult ChangeStatus(string username)
+        {
+            var dao = new UserDAO().ChangeStatus(username);
+            return Json(new
+            {
+                status = dao
+            });
+        }
+
+        [HttpPost]
+        public JsonResult ChangeRegency(string username, int regency)
+        {
+            var dao = new UserDAO().ChangeRegency(username, regency);
+            return Json(new
+            {
+                status = dao
+            });
+        }
     }
 }

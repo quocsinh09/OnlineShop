@@ -1,18 +1,8 @@
-﻿@using OnlineShop.Common;
+﻿
 @{
     
     Layout = "../Shared/_Layout.cshtml";
     ViewBag.Title = "Tài khoản";
-    var admin = Session["Admin"] as Models.EF.User;
-}
-@section username{
-    @admin.Name
-}
-@section username_dropdown{
-    @admin.Name
-}
-@section email{
-    @admin.Email
 }
 
 <div class="content">
@@ -35,13 +25,13 @@
                                 <div class="col-md-3 px-1">
                                     <div class="form-group">
                                         <label>Tên đăng nhập</label>
-                                        <input type="text" class="form-control" placeholder="Tên đăng nhập" value="@admin.Username">
+                                        <input type="text" class="form-control" placeholder="Tên đăng nhập" value="@(((Models.EF.User)Session["Admin"]).Username)">
                                     </div>
                                 </div>
                                 <div class="col-md-4 pl-1">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Địa chỉ email</label>
-                                        <input type="email" class="form-control" placeholder="Email" value="@admin.Email">
+                                        <input type="email" class="form-control" placeholder="Email" value="@(((Models.EF.User)Session["Admin"]).Email)">
                                     </div>
                                 </div>
                             </div>
@@ -49,13 +39,13 @@
                                 <div class="col-md-6 pr-1">
                                     <div class="form-group">
                                         <label>Ngày tạo</label>
-                                        <input type="text" class="form-control" placeholder="Ngày tạo" value="@admin.CreatedDate">
+                                        <input type="text" class="form-control" placeholder="Ngày tạo" value="@(((Models.EF.User)Session["Admin"]).CreatedDate)">
                                     </div>
                                 </div>
                                 <div class="col-md-6 pl-1">
                                     <div class="form-group">
                                         <label>Tên</label>
-                                        <input type="text" class="form-control" placeholder="Tên" value="@admin.Name">
+                                        <input type="text" class="form-control" placeholder="Tên" value="@(((Models.EF.User)Session["Admin"]).Name)">
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +53,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Địa chỉ</label>
-                                        <input type="text" class="form-control" placeholder="Địa chỉ" value="@admin.Address">
+                                        <input type="text" class="form-control" placeholder="Địa chỉ" value="@(((Models.EF.User)Session["Admin"]).Address)">
                                     </div>
                                 </div>
                             </div>
@@ -71,24 +61,24 @@
                                 <div class="col-md-4 pr-1">
                                     <div class="form-group">
                                         <label>Sinh nhật</label>
-                                        <input type="text" class="form-control" placeholder="Birthday" value="@admin.BirthDay">
+                                        <input type="text" class="form-control" placeholder="Birthday" value="@(((Models.EF.User)Session["Admin"]).BirthDay)">
                                     </div>
                                 </div>
                                 <div class="col-md-4 px-1">
                                     <div class="form-group">
                                         <label>Số điện thoại</label>
-                                        <input type="text" class="form-control" placeholder="Số điện thoại" value="@admin.Mobile">
+                                        <input type="text" class="form-control" placeholder="Số điện thoại" value="@(((Models.EF.User)Session["Admin"]).Mobile)">
                                     </div>
                                 </div>
                                 <div class="col-md-4 pl-1">
                                     <div class="form-group">
                                         <label>Postal Code</label>
-                                        <input type="button" class="form-control" placeholder="ZIP Code" value="@admin.Username ">
+                                        <input type="button" class="form-control" placeholder="ZIP Code" value="@(((Models.EF.User)Session["Admin"]).Name) ">
                                     </div>
                                 </div>
                             </div>
                             <button type="button" class="btn btn-info btn-fill pull-right">
-                                 @Html.ActionLink("Sửa thông tin", "Edit", null, new { id = @admin.ID }, new { style = "color:white;" })
+                                 @Html.ActionLink("Sửa thông tin", "Edit", null, new { id = ((Models.EF.User)Session["Admin"]).ID }, new { style = "color:white;" })
                             </button>
                             <button type="button" class="btn btn-info btn-fill pull-left">
                                 @Html.ActionLink("Quay về", "Index", null, new { style = "color:white;" })
@@ -107,10 +97,10 @@
                         <div class="author">
                             <a href="#">
                                 <img class="avatar border-gray" src="~/Assets/images/icon/avatar-04.jpg" alt="...">
-                                <h5 class="title">@admin.Name</h5>
+                                <h5 class="title">@(((Models.EF.User)Session["Admin"]).Name)</h5>
                             </a>
                             <p class="description">
-                                @admin.Email
+                                @(((Models.EF.User)Session["Admin"]).Email)
                             </p>
                         </div>
                         <p class="description text-center">

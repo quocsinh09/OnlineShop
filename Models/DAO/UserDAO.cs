@@ -72,8 +72,7 @@ namespace Models.DAO
         // Lấy ra các tài khoản admin
         public IEnumerable<User> admins(int page, int pageSize)
         {
-
-            return dbContext.Users.OrderBy(x => x.TypeOfAccount).ToPagedList(page, pageSize);//.Where(x => x.TypeOfAccount == 0)
+            return dbContext.Users.OrderByDescending(x => x.TypeOfAccount).ToPagedList(page, pageSize);//.Where(x => x.TypeOfAccount == 0)
         }
 
         // Lấy ra danh sách các tài khoản Member
@@ -163,29 +162,29 @@ namespace Models.DAO
             return false;
         }
 
-        public bool LockUser(string username)
+        public bool ChangeStatus(string username)
         {
             var user = dbContext.Users.SingleOrDefault(x => x.Username == username);
             if (user != null)
             {
                 try
                 {
-                    user.Status = false;
+                    user.Status = !user.Status;
                     dbContext.SaveChanges();
-                    return true;
+                    return user.Status;
                 }
                 catch (Exception ex)
                 {
                     // *TODO* log exception
                 }
             }
-            return false;
+            return user.Status;
         }
         
         // Thêm tafi khoarn
         public int Insert(User entity)
         {
-            var user = dbContext.Users.SingleOrDefault(x => x.Username == entity.Username);
+            var user = dbContext.Users.FirstOrDefault(x => x.Username == entity.Username);
             if (user != null && user.ID.ToString() != "")
             {
                 return -1;
@@ -194,6 +193,9 @@ namespace Models.DAO
             {
                 try
                 {
+                    entity.ID = Guid.NewGuid();
+                    entity.CreatedDate = DateTime.Now;
+                    
                     dbContext.Users.Add(entity);
                     dbContext.SaveChanges();
                     return 1;
@@ -204,6 +206,109 @@ namespace Models.DAO
                 }
             }
             return 0;
+        }
+
+        // Thêm tafi khoarn
+        public int InsertBy(User entity, User Adder)
+        {
+            var userName = dbContext.Users.FirstOrDefault(x => x.Username == entity.Username);
+            if (userName != null && userName.ID.ToString() != "")
+            {
+                return -1;
+            }
+            else
+            {
+                var userEmail = dbContext.Users.FirstOrDefault(x => x.Email == entity.Email);
+                if (userEmail != null && userEmail.ID.ToString() != "")
+                {
+                    return -2;
+                }
+                else
+                {
+                    var userPhone = dbContext.Users.FirstOrDefault(x => x.Mobile == entity.Mobile);
+                    if (userPhone != null && userPhone.ID.ToString() != "")
+                    {
+                        return -3;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            entity.ID = Guid.NewGuid();
+                            entity.CreatedDate = DateTime.Now;
+                            entity.ModifiedDate = DateTime.Now;
+                            entity.Status = true;
+                            entity.CreatedBy = Adder.Name;
+                            entity.ModifiedBy = Adder.Name;
+                            dbContext.Users.Add(entity);
+                            dbContext.SaveChanges();
+                            return 1;
+                        }
+                        catch (Exception ex)
+                        {
+                            //*Todo* log exception
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
+
+        //Check tai khoan vua tao
+        public string AccountError(User user, int added)
+        {
+            if (added == -1)
+            {
+                return "Đã tồn tại tài khoản tên : " + user.Username;
+            }
+            else if (added == -2)
+            {
+                return "Đã tồn tại tài khoản có mail : " + user.Email;
+            }
+            else if (added == -3)
+            {
+                return "Đã tồn tại tài khoản có sđt : " + user.Mobile;
+            }
+            else
+            {
+                return "Thêm tài khoản không thành công";
+            }
+        }
+
+        // Xoa tai khoan
+        public bool DeleteAccount(string username, int regency)
+        {
+            if(regency == 2)
+            {
+                try
+                {
+                    var user = dbContext.Users.SingleOrDefault(x => x.Username == username);
+                    dbContext.Users.Remove(user);
+                    dbContext.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        public bool ChangeRegency(string username, int regency)
+        {
+            try
+            {
+                var user = dbContext.Users.SingleOrDefault(x => x.Username == username);
+                user.TypeOfAccount = regency;
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
     }
     

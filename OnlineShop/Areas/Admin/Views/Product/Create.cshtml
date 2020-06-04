@@ -3,16 +3,6 @@
 @{
     ViewBag.Title = "Thêm sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    var admin = Session["Admin"] as Models.EF.User;
-}
-@section username{
-    @admin.Name
-}
-@section username_dropdown{
-    @admin.Name
-}
-@section email{
-    @admin.Email
 }
 <h2 class="col-lg-12">Thêm mới sản phẩm</h2>
 

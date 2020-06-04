@@ -2,17 +2,6 @@
 @{
     ViewBag.Title = "Tạo tài khoản";
     Layout = "../Shared/_Layout.cshtml";
-    var admin = Session["Admin"] as Models.EF.User;
-}
-
-@section username{
-    @admin.Name
-}
-@section username_dropdown{
-    @admin.Name
-}
-@section email{
-    @admin.Email
 }
 
 <h3 class="col-lg-12" style="font-family:Arial, Helvetica, sans-serif">Thêm tài khoản</h3>
@@ -92,13 +81,7 @@
                     @Html.ValidationMessageFor(model => model.ModifiedBy, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-md-12 col-form-label">Địa chỉ</label>
-                <div class="input-group col">
-                    @Html.TextBoxFor(model => model.Status, new { @class = "form-control", @type = "text" })
-                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                </div>
-            </div>
+          
             <div class="form-group row">
                 <label class="col-md-12 col-form-label">Địa chỉ</label>
                 <div class="input-group col">
@@ -106,7 +89,7 @@
                     @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                 </div>
             </div>
-            @Html.EditorFor(model => model.CreatedDate, DateTime.Now)
+            @Html.EditorFor(model => model.CreatedBy,((Models.EF.User)Session["Admin"]).Name.ToString())
             </div>
     </div>
     <button type="submit" class="btn btn-info btn-fill pull-right  m-r-10">Tạo tài khoản</button>

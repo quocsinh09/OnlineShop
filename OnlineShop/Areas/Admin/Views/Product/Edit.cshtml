@@ -3,16 +3,6 @@
 @{
     ViewBag.Title = "Chỉnh sửa sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    var admin = Session["Admin"] as Models.EF.User;
-}
-@section username{
-    @admin.Name
-}
-@section username_dropdown{
-    @admin.Name
-}
-@section email{
-    @admin.Email
 }
 <h2 class="col-lg-12" style="font-family:Arial, Helvetica, sans-serif;">Chỉnh sửa sản phẩm</h2>
 @using (Html.BeginForm("Edit", "Product", FormMethod.Post))

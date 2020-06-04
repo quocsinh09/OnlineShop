@@ -2,18 +2,6 @@
 @{
     ViewBag.Title = "Trang chủ";
     Layout = "../Shared/_Layout.cshtml";
-    var admin = Session["Admin"] as Models.EF.User;
-}
-
-
-@section username{
-    @admin.Name
-}
-@section username_dropdown{
-    @admin.Name
-}
-@section email{
-    @admin.Email
 }
 <section class="statistic statistic2">
     <div class="container">
