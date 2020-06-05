@@ -68,7 +68,7 @@
                         </li>
 
                         <li>
-                            <a href="@Url.Action("Index", "User", new { area = "Admin" })">
+                            <a href="@Url.Action("Index", ((Models.EF.User)Session["Admin"]).TypeOfAccount == 2 ? "User" : "Home", new { area = "Admin" })">
                                 <i class="fas fa-chart-bar"></i>Tài khoản
                             </a>
                         </li>
@@ -103,7 +103,7 @@
                         </li>
 
                         <li>
-                            <a href="@Url.Action("Index", "User", new { area = "Admin" })">
+                            <a href="@Url.Action("Index", ((Models.EF.User)Session["Admin"]).TypeOfAccount == 2 ? "User":"Home", new { area = "Admin" })">
                                 <i class="fas fa-users"></i>Tài khoản
                             </a>
                         </li>

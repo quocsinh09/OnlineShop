@@ -20,8 +20,8 @@ namespace OnlineShop.Areas.Admin.Controllers
             var order = new OrderDAO();
             var getInfo = new HomeDAO();
             var model = order.List(1, 10);
-            
-            if (Session["Admin"] == null)
+
+            if ((User)Session[CommonConstants.ADMIN_SESSION] == null)
             {
                 return RedirectToAction("Index", "Login");
             }
@@ -34,7 +34,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Account()
         {
-            if (Session["Admin"] == null)
+            if ((User)Session[CommonConstants.ADMIN_SESSION] == null)
             {
                 return RedirectToAction("Index", "Login");
             }
@@ -42,32 +42,6 @@ namespace OnlineShop.Areas.Admin.Controllers
             {
                 return View();
             }
-        }
-
-        public ActionResult Edit(Guid id)
-        {
-            var user = new UserDAO().ViewDetail(id);
-            return View(user);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(User user)
-        {
-            
-                var dao = new UserDAO();
-                var result = dao.Update(user);
-                if (result)
-                {
-                    Session["Admin"] = user;
-                    return RedirectToAction("Account");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Cập nhật thông tin không thành công");
-                }
-            
-            return View(user);
-
         }
 
         public ActionResult ChangePassword(string username)
@@ -89,6 +63,32 @@ namespace OnlineShop.Areas.Admin.Controllers
                 ModelState.AddModelError("", "Thay đổi mật khẩu không thành công");
             }
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(string username)
+        {
+            var user = new UserDAO().GetByID(username);
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(User user)
+        {
+
+            var dao = new UserDAO();
+            var result = dao.Update(user, CheckRegency, (User)Session[CommonConstants.ADMIN_SESSION]);
+            if (result)
+            {
+                Session.Add(CommonConstants.ADMIN_SESSION, user);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Cập nhật thông tin không thành công");
+            }
+
+            return View(user);
+
         }
     }
 }

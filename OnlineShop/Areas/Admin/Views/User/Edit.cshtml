@@ -8,16 +8,14 @@
 
 @using (Html.BeginForm("Edit", null, FormMethod.Post))
 {
-    <input type="hidden" name="ID" value="@Model.Username" />
+    <input type="hidden" name="ID" value=@Model.ID />
     @Html.AntiForgeryToken()
     
-    <div class="form-group col-lg-12">
+    <div class="form-group col-lg-12">  
         <hr/>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         
         <div class="card-body form-control">
-                    
-           
             <div class="form-group row">
                 <label class="col-md-12 col-form-label">Họ và tên</label>
                 <div class="col">

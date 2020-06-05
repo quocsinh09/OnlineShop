@@ -102,12 +102,9 @@ namespace Models.DAO
         }
         public SqlDataReader sqlConnect(string select)
         {
-            SqlConnection sqlConnection = new SqlConnection("data source=.;initial catalog=OnlShopCNPM;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
-            sqlConnection.Open();
             SqlCommand sqlCommand = new SqlCommand(select);
-
             sqlCommand.CommandType = System.Data.CommandType.Text;
-            sqlCommand.Connection = sqlConnection;
+            sqlCommand.Connection = Models.DAO.DBContext.sqlConnection;
             SqlDataReader dataReader = sqlCommand.ExecuteReader();
             return dataReader;
         }

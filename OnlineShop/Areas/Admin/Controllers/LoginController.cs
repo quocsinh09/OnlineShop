@@ -38,9 +38,10 @@ namespace OnlineShop.Areas.Admin.Controllers
                     userSession.UserName = user.Username;
                     userSession.ID= user.ID;
 
-                    Session.Add(CommonConstants.USER_SESSION, userSession);
+                    Session.Add(CommonConstants.CHECK_SESSION, userSession);
+                    Session.Add(CommonConstants.ADMIN_SESSION, user);
 
-                    Session["Admin"] = user;
+                    DBContext.openConnect();
 
                     return RedirectToAction("Index", "Home");
                 }

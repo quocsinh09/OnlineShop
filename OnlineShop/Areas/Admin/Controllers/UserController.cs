@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Models.EF;
+using OnlineShop.Common;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
@@ -15,15 +16,12 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             var dataAccessObj = new UserDAO();
             var model = dataAccessObj.admins(1, 5);
+            if (!CheckRegency) return RedirectToAction("Index", "Home");
             return View(model);
         }
-        public ActionResult MemberAccount(string id)
+        public ActionResult MemberAccount(string username)
         {
-           
-            var dataAccessObj = new UserDAO();
-            var user = dataAccessObj.GetByID(id);
-            Session["Member"] = user;
-
+            Session.Add(CommonConstants.USER_SESSION, new UserDAO().GetByID(username));
             return View();
         }
 
@@ -40,7 +38,8 @@ namespace OnlineShop.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new UserDAO();
-                int added = dao.InsertBy(user, (User)Session["Admin"]);
+                user.Password = Crypto.MD5Hash(user.Password);
+                int added = dao.InsertBy(user, (User)Session[CommonConstants.ADMIN_SESSION]);
                 if (added == 1)
                 {
                     return RedirectToAction("Index");
@@ -56,7 +55,8 @@ namespace OnlineShop.Areas.Admin.Controllers
         [HttpPost]
         public JsonResult Delete(string username)
         {
-            var dao = new UserDAO().DeleteAccount(username, ((User)Session["Admin"]).TypeOfAccount);
+            var dao = new UserDAO();
+            var result = dao.DeleteAccount(username, CheckRegency);
             return Json(new
             {
                 delete = dao
@@ -73,14 +73,40 @@ namespace OnlineShop.Areas.Admin.Controllers
             });
         }
 
-        [HttpPost]
-        public JsonResult ChangeRegency(string username, int regency)
+        //[HttpPost]
+        //public JsonResult ChangeRegency(string username, int regency)
+        //{
+        //    var dao = new UserDAO().ChangeRegency(username, regency);
+        //    return Json(new
+        //    {
+        //        status = dao
+        //    });
+        //}
+
+        public ActionResult Edit(string username)
         {
-            var dao = new UserDAO().ChangeRegency(username, regency);
-            return Json(new
+            var user = new UserDAO().GetByID(username);
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(User user)
+        {
+
+            var dao = new UserDAO();
+            var result = dao.Update(user, CheckRegency, (User)Session[CommonConstants.ADMIN_SESSION]);
+            if (result)
             {
-                status = dao
-            });
+                Session.Add(CommonConstants.ADMIN_SESSION, user);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Cập nhật thông tin không thành công");
+            }
+
+            return View(user);
+
         }
     }
 }

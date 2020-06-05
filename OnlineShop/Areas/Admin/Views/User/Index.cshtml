@@ -34,7 +34,7 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td id="img-account p-t-10" class="m-l-10">
+                                        <td id="img-account p-t-10">
                                             <img class="account" src="~/Assets/images/icon/avatar-01.jpg" alt="account">
                                         </td>
                                         <td>
@@ -46,20 +46,20 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="role-admin role member">@(item.Status ? "Đang hoạt động" : "Đã khóa")</span>
+                                            <span class="role @(item.Status ? "member" : "admin")">@(item.Status ? "Đang hoạt động" : "Đã khóa")</span>
                                         </td>
                                         <td>
-                                            <span class=@(item.TypeOfAccount == 2 ? "role+admin" : " role"+"user")>@(item.TypeOfAccount == 2 ? "Toàn quyền" : "Nhân viên")</span>
+                                            <span class="role @(item.TypeOfAccount == 2 ? "admin" : "user") ">@(item.TypeOfAccount == 2 ? "Toàn quyền" : "Nhân viên")</span>
                                         </td>
                                         <td>@item.Mobile</td>
                                         <td>
                                             <div class="table-data-feature">
                                                 <button class="edit-user item" data-id=@item.Username data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa">
-                                                    <i class="zmdi zmdi-edit"></i>
-                                                </button>
+                                                    @Html.ActionLink(" ", "Edit", null, new { username = @item.Username }, new { @class = "zmdi zmdi-edit"})
+                                                 </button>
 
                                                 <button class="delete-user item" data-id="@item.Username" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xóa">
-                                                    <i class="zmdi zmdi-delete"></i>
+                                                    <i class="zmdi zmdi-delete" style="color:orange"></i>
                                                 </button>
                                             </div>
                                         </td> 
