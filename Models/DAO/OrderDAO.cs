@@ -44,11 +44,7 @@ namespace Models.DAO
         {
             var model = (from u in dbContext.Users
                         join o in dbContext.Orders
-                        on u.ID equals o.CustomerID into OrderUser
-                        from o in OrderUser
-                        join od in dbContext.OrderDetails
-                        on o.ID equals od.OrderID
-                         
+                        on u.ID equals o.CustomerID                        
                     select new
                         {
                             ID = o.ID,
@@ -66,11 +62,6 @@ namespace Models.DAO
                             CreatedDate = u.CreatedDate,
                             ModifiedDate  = u.ModifiedDate,
                             AmountMissOrder = u.AmountMissOrder,
-                            ProductCode = od.ProductCode,
-                            ProductName = od.ProductName,
-                            MetaTitle = od.MetaTitle,
-                            Amount = od.Amount,
-                            Price = od.Price,
                             username = u.Username
                         }).AsEnumerable().Select(x => new OrderViewModel()
                         {
@@ -89,11 +80,6 @@ namespace Models.DAO
                             CreatedDate = x.CreatedDate,
                             ModifiedDate = x.ModifiedDate,
                             AmountMissOrder = x.AmountMissOrder,
-                            ProductCode = x.ProductCode,
-                            ProductName = x.ProductName,
-                            MetaTitle = x.MetaTitle,
-                            Amount = x.Amount,
-                            Price = x.Price,
                             username = x.username
                         });
 
@@ -103,6 +89,7 @@ namespace Models.DAO
         public SqlDataReader sqlConnect(string select)
         {
             SqlCommand sqlCommand = new SqlCommand(select);
+
             sqlCommand.CommandType = System.Data.CommandType.Text;
             sqlCommand.Connection = Models.DAO.DBContext.sqlConnection;
             SqlDataReader dataReader = sqlCommand.ExecuteReader();
@@ -117,6 +104,45 @@ namespace Models.DAO
                 result = dataReader["total"].ToString();
             }
             return result; 
+        }
+
+        public List<OrderDetail> ViewDetailById(Guid id)
+        {
+            return dbContext.OrderDetails.Where(x => x.OrderID == id).OrderByDescending(x => x.ProductCode).ToList();
+        }
+
+        public Order GetById(Guid orderId)
+        {
+            return dbContext.Orders.Find(orderId);
+        }
+        public OrderDetail GetDetailById(Guid orderId)
+        {
+            return dbContext.OrderDetails.Find(orderId);
+        }
+
+        public List<Order> OrderByUserId(Guid userid)
+        {
+            return dbContext.Orders.Where(x => x.CustomerID == userid).OrderByDescending(x => x.OrderDate).ToList();
+        }
+
+        public List<OrderDetail> ViewOrderDetail(List<Order> orders)
+        {
+            List<OrderDetail> result = new List<OrderDetail>();
+            foreach (var item in orders)
+            {
+                List<OrderDetail> temp = new List<OrderDetail>();
+                temp = dbContext.OrderDetails.Where(x => x.OrderID == item.ID).ToList();
+                foreach (var ord in temp)
+                {
+                    result.Add(ord);
+                }
+            }
+            return result; 
+        }
+
+        public Order GetOrderDetailByID(Guid orderID)
+        {
+            return dbContext.Orders.Find(orderID);
         }
     }
 }

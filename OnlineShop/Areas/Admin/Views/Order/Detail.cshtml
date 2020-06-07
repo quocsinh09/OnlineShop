@@ -1,0 +1,124 @@
+﻿@model IEnumerable<Models.EF.OrderDetail>
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="caption" style="font-family:Arial, Helvetica, sans-serif">
+                            <h3>Đơn hàng @ViewBag.Order.ID.ToString().Substring(0, 10)</h3> 
+                        </div>
+                    </div>
+                    <div class="card-body scrollbox-md" data-simplebar="init">
+                        <div class="simplebar-wrapper" style="margin: -19px;">
+                            <div class="simplebar-height-auto-observer-wrapper">
+                                <div class="simplebar-height-auto-observer"></div>
+                            </div>
+                            <div class="simplebar-mask">
+                                <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                    <div class="simplebar-content-wrapper" style="height: 408px;">
+                                        <div class="simplebar-content" style="padding: 19px;height:400px;overflow-y:scroll">
+                                            <div class="timeline-wrapper">
+                                                <div class="timeline-item">
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <div class="col-md-12">
+                                                            <div class="card">
+                                                                <div class="card-header">
+                                                                    <h4 class="card-title" style="font-family:Arial, Helvetica, sans-serif">Thông tin đơn hàng</h4>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <form>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label>Tên sản phẩm</label>
+                                                                                    <input type="text" class="form-control" disabled="" placeholder="Tên sản phẩm" value="@item.ProductName" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label>Link sản phẩm</label>
+                                                                                    <input type="text" class="form-control" placeholder="Địa chỉ" value="@item.MetaTitle" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">
+                                                                                    <label>Số lượng</label>
+                                                                                    <input type="datetime" class="form-control" placeholder="Số lượng" value="@item.Amount" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">
+                                                                                    <label>Đơn giá(VNĐ/SP)</label>
+                                                                                    <input type="text" class="form-control" placeholder="Đơn giá" value="@item.Price" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">
+                                                                                    <label >Thành tiền</label>
+                                                                                    <input type="text" class="form-control" placeholder="Thành tiền" value="@(item.Price*item.Amount)" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="text-primary"> Thông tin khách hàng</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-secondary"> Họ và tên : @ViewBag.Customer.Name
+                            @Html.ActionLink("Chi tiết", "MemberAccount", "User", new { username = ViewBag.Customer.Username }, new { @class="text-danger"})
+                        </div>
+                        <div class="text-secondary">Email : @ViewBag.Customer.Email</div>
+                        <div class="text-secondary">SĐT : @(ViewBag.Customer.Mobile == null ? "Không có" : ViewBag.Customer.Mobile)</div>
+                        <div>Địa chỉ : @(ViewBag.Customer.Address == null ? "Không có" : ViewBag.Customer.Address)</div>
+                        <div class=""> Ngày tạo : @ViewBag.Customer.CreatedDate</div>
+                        <div> Trạng thái : @(ViewBag.Customer.Status == true ? "Đang hoạt động" : " Đã bị khóa")</div>
+                    </div>
+                </div>
+                <div class="row m-t-10">
+                    <div class="col-lg-12" style="height:300px">
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <div class="caption " style="font-family:Arial, Helvetica, sans-serif">
+                                    <h4 class="text-primary">Trạng thái đơn hàng</h4>
+                                </div>
+                            </div>
+                            <div class="card-body scrollbox-md" data-simplebar="init">
+                                <div>Ngày đặt : @ViewBag.Order.OrderDate</div>
+                                <div>Ngày gửi : @ViewBag.Order.ShippedDate</div>
+                                <div>Địa chỉ nhận : @ViewBag.Order.Address </div>
+                                <div>Trạng thái : @ViewBag.Order.Status </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

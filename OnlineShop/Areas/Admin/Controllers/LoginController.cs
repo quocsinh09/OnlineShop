@@ -71,7 +71,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         public ActionResult ForgotPassword(ForgotPasswordModel entity)
         {
             var user = new UserDAO().GetByMail(entity.Email);
-            entity.Password = "1234567";
+            user.Password = Crypto.MD5Hash("1234567");
 
             string content = System.IO.File.ReadAllText(Server.MapPath("~/Assets/ClientTemplate/NewOrder.html"));
 

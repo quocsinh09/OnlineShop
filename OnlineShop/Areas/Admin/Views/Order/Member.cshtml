@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" style="position:fixed; ">
+                <div class="card ">
+                    <div class="card-header">
+                        <h4 class="text-primary"> Thông tin khách hàng</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="text-secondary">  Họ và tên : @ViewBag.Customer.Name </div>
+                                <div class="text-secondary">Email : @ViewBag.Customer.Email</div>
+                                <div class="text-secondary">SĐT : @(ViewBag.Customer.Mobile == null ? "Không có" : ViewBag.Customer.Mobile)</div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>Địa chỉ : @(ViewBag.Customer.Address == null ? "Không có" : ViewBag.Customer.Address)</div>
+                                <div class=""> Ngày tạo : @ViewBag.Customer.CreatedDate</div>
+                                <div> Trạng thái : @(ViewBag.Customer.Status == true ? "Đang hoạt động" : " Đã bị khóa")</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 m-t-165">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="caption" style="font-family:Arial, Helvetica, sans-serif">
+                            <h3>Đơn hàng</h3>
+                        </div>
+                    </div>
+                    @foreach (var item in ViewBag.Orders)
+                    {
+                        
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Mã đơn hàng</label>
+
+                                            <input type="text" class="form-control" placeholder="Mã đơn hàng" value="@item.OrderID" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Tên sản phẩm</label>
+                                            <input type="text" class="form-control" disabled="" placeholder="Tên sản phẩm" value="@item.ProductName" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Link sản phẩm</label>
+                                            <input type="text" class="form-control" placeholder="Địa chỉ" value="@item.MetaTitle" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Địa chỉ nhận hàng</label>
+                                            <input type="text" class="form-control" placeholder="Mã đơn hàng" value="@Model.GetOrderDetailByID(item.OrderID).Address" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Ngày đặt</label>
+                                            <input type="datetime" class="form-control" placeholder="Ngày đặt" value="@Model.GetOrderDetailByID(item.OrderID).OrderDate" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Ngày gửi</label>
+                                            <input type="text" class="form-control" placeholder="Ngày gửi" value="@Model.GetOrderDetailByID(item.OrderID).ShippedDate" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Trạng thái</label>
+                                            <input type="text" class="form-control" placeholder="Trạng thái" value="@Model.GetOrderDetailByID(item.OrderID).Status" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Số lượng</label>
+                                            <input type="datetime" class="form-control" placeholder="Số lượng" value="@item.Amount" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Đơn giá(VNĐ/SP)</label>
+                                            <input type="text" class="form-control" placeholder="Đơn giá" value="@item.Price" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Thành tiền</label>
+                                            <input type="text" class="form-control" placeholder="Thành tiền" value="@(item.Price*item.Amount)" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                          <hr/>
+                    }
+                </div>
+            </div>
+           
+        </div>
+        <button type="submit" class="btn btn-info btn-fill m-t-10">
+            @Html.ActionLink("Quay về", "MemberAccount", null, new { username = ViewBag.Customer.Username }, new {@class ="text-white" })
+        </button>
+    </div>
+</div>

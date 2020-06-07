@@ -105,47 +105,43 @@ namespace Models.DAO
         }
 
         // Cập nhật thông tin | Sửa/Xóa
-        public bool Update(User entity, bool regency, User added)
+        public bool Update(User entity)
         {
-            if (entity.Equals(added) || regency) 
+            var user = dbContext.Users.Find(entity.ID);
+            if (user != null)
             {
-                var user = dbContext.Users.Find(entity.ID);
-                if (user != null && regency)
+                try
                 {
-                    try
-                    {
-                        user.ID = entity.ID;
-                        user.Name = entity.Name;
-                        user.Address = entity.Address;
-                        user.BirthDay = entity.BirthDay;
-                        user.Email = entity.Email;
-                        user.Mobile = entity.Mobile;
-                        user.ModifiedDate = DateTime.Now;
-                        user.ModifiedBy = added.Name;
-                        dbContext.SaveChanges();
-                        return true;
-                    }
-                    catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
-                    {
-                        Exception raise = dbEx;
-                        foreach (var validationErrors in dbEx.EntityValidationErrors)
-                        {
-                            foreach (var validationError in validationErrors.ValidationErrors)
-                            {
-                                string message = string.Format("{0}:{1}",
-                                    validationErrors.Entry.Entity.ToString(),
-                                    validationError.ErrorMessage);
-                                // raise a new exception nesting  
-                                // the current instance as InnerException  
-                                raise = new InvalidOperationException(message, raise);
-                            }
-                        }
-                        throw raise;
-                    }  
+                    user.ID = entity.ID;
+                    user.Name = entity.Name;
+                    user.Address = entity.Address;
+                    user.BirthDay = entity.BirthDay;
+                    user.Email = entity.Email;
+                    user.Mobile = entity.Mobile;
+                    user.ModifiedDate = DateTime.Now;
+                    dbContext.SaveChanges();
+                    return true;
                 }
-
+                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                {
+                    Exception raise = dbEx;
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            string message = string.Format("{0}:{1}",
+                                validationErrors.Entry.Entity.ToString(),
+                                validationError.ErrorMessage);
+                            // raise a new exception nesting  
+                            // the current instance as InnerException  
+                            raise = new InvalidOperationException(message, raise);
+                        }
+                    }
+                    throw raise;
+                }  
             }
-            return false;
+        return false;
+            
         }
 
         public bool UpdatePassword(string password, string Username)
@@ -281,21 +277,18 @@ namespace Models.DAO
         }
 
         // Xoa tai khoan
-        public bool DeleteAccount(string username, bool regency)
+        public bool DeleteAccount(string username)
         {
-            if(regency)
+            try
             {
-                try
-                {
-                    var user = dbContext.Users.SingleOrDefault(x => x.Username == username);
-                    dbContext.Users.Remove(user);
-                    dbContext.SaveChanges();
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    return false;
-                }
+                var user = dbContext.Users.SingleOrDefault(x => x.Username == username);
+                dbContext.Users.Remove(user);
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
             return false;
         }
@@ -315,6 +308,5 @@ namespace Models.DAO
         //    }
 
         //}
-    }
-    
+    } 
 }

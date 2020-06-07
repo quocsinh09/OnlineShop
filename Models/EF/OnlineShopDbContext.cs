@@ -13,11 +13,11 @@ namespace Models.EF
         }
 
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -28,14 +28,6 @@ namespace Models.EF
             modelBuilder.Entity<Order>()
                 .Property(e => e.Mobile)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<OrderDetail>()
-                .Property(e => e.MetaTitle)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<OrderDetail>()
-                .Property(e => e.Price)
-                .HasPrecision(18, 0);
 
             modelBuilder.Entity<Product>()
                 .Property(e => e.MetaTitle)
@@ -116,6 +108,14 @@ namespace Models.EF
             modelBuilder.Entity<User>()
                 .Property(e => e.ModifiedBy)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<OrderDetail>()
+                .Property(e => e.MetaTitle)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<OrderDetail>()
+                .Property(e => e.Price)
+                .HasPrecision(18, 0);
         }
     }
 }

@@ -16,12 +16,19 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             var dataAccessObj = new UserDAO();
             var model = dataAccessObj.admins(1, 5);
-            if (!CheckRegency) return RedirectToAction("Index", "Home");
             return View(model);
+        }
+        public ActionResult Account(string username)
+        {
+            var user = new UserDAO().GetByID(username);
+            Session.Add(CommonConstants.USER_SESSION, user);
+            return View();
         }
         public ActionResult MemberAccount(string username)
         {
-            Session.Add(CommonConstants.USER_SESSION, new UserDAO().GetByID(username));
+            var user = new UserDAO().GetByID(username);
+            Session.Add(CommonConstants.USER_SESSION, user);
+            ViewBag.Review = new ReviewDAO().GetByUsername(username);
             return View();
         }
 
@@ -56,7 +63,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         public JsonResult Delete(string username)
         {
             var dao = new UserDAO();
-            var result = dao.DeleteAccount(username, CheckRegency);
+            var result = dao.DeleteAccount(username);
             return Json(new
             {
                 delete = dao
@@ -83,30 +90,22 @@ namespace OnlineShop.Areas.Admin.Controllers
         //    });
         //}
 
-        public ActionResult Edit(string username)
+        public ActionResult Edit(Guid id)
         {
-            var user = new UserDAO().GetByID(username);
-            return View(user);
+            return View(new UserDAO().ViewDetail(id));
         }
 
         [HttpPost]
         public ActionResult Edit(User user)
         {
-
-            var dao = new UserDAO();
-            var result = dao.Update(user, CheckRegency, (User)Session[CommonConstants.ADMIN_SESSION]);
-            if (result)
-            {
-                Session.Add(CommonConstants.ADMIN_SESSION, user);
-                return RedirectToAction("Index");
-            }
-            else
+            user.ModifiedBy = ((User)Session[CommonConstants.ADMIN_SESSION]).Name;
+            var result = new UserDAO().Update(user);
+            if (!result)
             {
                 ModelState.AddModelError("", "Cập nhật thông tin không thành công");
             }
-
-            return View(user);
-
+            return RedirectToAction("Index");
         }
+
     }
 }

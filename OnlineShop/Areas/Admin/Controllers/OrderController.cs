@@ -1,4 +1,6 @@
 ﻿using Models.DAO;
+using Models.EF;
+using OnlineShop.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,76 +20,27 @@ namespace OnlineShop.Areas.Admin.Controllers
 
         }
 
-        // GET: Admin/Oder/Details/5
-        public ActionResult Details(int id)
+        public ActionResult MemberAccount(string username)
         {
+            var user = new UserDAO().GetByID(username);
+            Session.Add(CommonConstants.USER_SESSION, user);
+            ViewBag.Review = new ReviewDAO().GetByUsername(username);
             return View();
         }
-
-        // GET: Admin/Oder/Create
-        public ActionResult Create()
+        public ActionResult Detail(Guid orderid)
         {
-            return View();
+            ViewBag.Order = new OrderDAO().GetById(orderid);
+            ViewBag.Customer = new UserDAO().ViewDetail(ViewBag.Order.CustomerID);
+            return View(new OrderDAO().ViewDetailById(orderid));
         }
 
-        // POST: Admin/Oder/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Member(Guid id)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Admin/Oder/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Admin/Oder/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Admin/Oder/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Admin/Oder/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            ViewBag.Customer = new UserDAO().ViewDetail(id);
+            ViewBag.MemberOrder = new OrderDAO().OrderByUserId(id);
+            ViewBag.Orders = new OrderDAO().ViewOrderDetail(ViewBag.MemberOrder);
+            var getOrder = new OrderDAO();
+            return View(getOrder);
         }
     }
 }

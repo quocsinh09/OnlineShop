@@ -29,18 +29,6 @@ namespace Models.ViewModel
         public int? CostBy { get; set; }
 
         public bool? ChangeStatus { get; set; }
-
-
-        public int ProductCode { get; set; }
-
-        public string ProductName { get; set; }
-
-        public string MetaTitle { get; set; }
-
-        public int Amount { get; set; }
-
-        public decimal Price { get; set; }
-
        
         public string Name { get; set; }
 

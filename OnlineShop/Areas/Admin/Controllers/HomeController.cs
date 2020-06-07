@@ -32,7 +32,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             }
         }
         [HttpGet]
-        public ActionResult Account()
+        public ActionResult Account(string username)
         {
             if ((User)Session[CommonConstants.ADMIN_SESSION] == null)
             {
@@ -40,7 +40,8 @@ namespace OnlineShop.Areas.Admin.Controllers
             }
             else
             {
-                return View();
+                var user = new UserDAO().GetByID(username);
+                return View(user);
             }
         }
 
@@ -65,30 +66,24 @@ namespace OnlineShop.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Edit(string username)
+        public ActionResult Edit(Guid id)
         {
-            var user = new UserDAO().GetByID(username);
+            var user = new UserDAO().ViewDetail(id);
             return View(user);
         }
 
         [HttpPost]
         public ActionResult Edit(User user)
         {
-
             var dao = new UserDAO();
-            var result = dao.Update(user, CheckRegency, (User)Session[CommonConstants.ADMIN_SESSION]);
-            if (result)
-            {
-                Session.Add(CommonConstants.ADMIN_SESSION, user);
-                return RedirectToAction("Index");
-            }
-            else
+            user.ModifiedBy = ((User)Session[CommonConstants.ADMIN_SESSION]).Name;
+            var result = dao.Update(user);
+            if (!result)
             {
                 ModelState.AddModelError("", "Cập nhật thông tin không thành công");
             }
-
-            return View(user);
-
+            Session.Add(CommonConstants.ADMIN_SESSION, user);
+            return RedirectToAction("Index");
         }
     }
 }

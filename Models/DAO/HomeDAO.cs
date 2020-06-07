@@ -66,11 +66,5 @@ namespace Models.DAO
             }
             return result;
         }
-
-        public bool CheckRegency(int typeOfAccount)
-        {
-            return typeOfAccount == 2 ? true : false;
-        }
-
     }
 }

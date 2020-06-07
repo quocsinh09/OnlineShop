@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Người dùng";
     Layout = "../Shared/_Layout.cshtml";
-    string admin = "role admin";
 }
 @section js{
     <script src="~/Assets/js/controller/userController.js"></script>
@@ -39,7 +38,7 @@
                                         </td>
                                         <td>
                                             <div class="table-data__info">
-                                                <h6>@item.Name</h6>
+                                                <h6>@Html.ActionLink(item.Name, "Account", null, new { username = item.Username.ToString() }, new { @class = "text-danger" })</h6>
                                                 <span>
                                                     <a>@item.Email</a>
                                                 </span>
@@ -55,7 +54,7 @@
                                         <td>
                                             <div class="table-data-feature">
                                                 <button class="edit-user item" data-id=@item.Username data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa">
-                                                    @Html.ActionLink(" ", "Edit", null, new { username = @item.Username }, new { @class = "zmdi zmdi-edit"})
+                                                    @Html.ActionLink(" ", "Edit", "User", new {id = @item.ID }, new { @class = "zmdi zmdi-edit"})
                                                  </button>
 
                                                 <button class="delete-user item" data-id="@item.Username" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xóa">
@@ -65,13 +64,12 @@
                                         </td> 
                                     </tr>
                                 }
-
-
                             </tbody>
                         </table>
                     </div>
-                    
-                </div>@Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
+                   
+                </div>
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
                 <!-- thong tin tai khoan-->
             </div>
         </div>

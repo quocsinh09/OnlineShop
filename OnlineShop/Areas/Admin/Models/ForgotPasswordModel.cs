@@ -8,11 +8,7 @@ namespace OnlineShop.Areas.Admin.Models
 {
     public class ForgotPasswordModel
     {
+        [Required(ErrorMessage = "Xin mời nhập Email tài khoản của bạn")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Mời nhập tài khoản")]
-        public string UserName { get; set; }
-
-        [Required(ErrorMessage = "Vui lòng điền mật khẩu")]
-        public string Password { get; set; }
     }
 }

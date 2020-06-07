@@ -68,7 +68,7 @@
                         </li>
 
                         <li>
-                            <a href="@Url.Action("Index", ((Models.EF.User)Session["Admin"]).TypeOfAccount == 2 ? "User" : "Home", new { area = "Admin" })">
+                            <a href="@Url.Action("Index", ((Models.EF.User)Session[OnlineShop.Common.CommonConstants.ADMIN_SESSION]).TypeOfAccount == 2 ? "User" : "Home", new { area = "Admin" })">
                                 <i class="fas fa-chart-bar"></i>Tài khoản
                             </a>
                         </li>
@@ -103,7 +103,7 @@
                         </li>
 
                         <li>
-                            <a href="@Url.Action("Index", ((Models.EF.User)Session["Admin"]).TypeOfAccount == 2 ? "User":"Home", new { area = "Admin" })">
+                            <a href="@Url.Action("Index", ((Models.EF.User)Session[OnlineShop.Common.CommonConstants.ADMIN_SESSION]).TypeOfAccount == 2 ? "User" : "Home", new { area = "Admin" })">
                                 <i class="fas fa-users"></i>Tài khoản
                             </a>
                         </li>
@@ -135,7 +135,7 @@
                                             <img src="~/Assets/images/icon/avatar-01.jpg" alt="Profile picture" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">@(((Models.EF.User)Session["Admin"]).Name)</a>
+                                            <a class="js-acc-btn" href="#">@(((Models.EF.User)Session[OnlineShop.Common.CommonConstants.ADMIN_SESSION]).Name)</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix ">
@@ -146,14 +146,14 @@
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        @Html.ActionLink(((Models.EF.User)Session["Admin"]).Name.ToString(),"Account", "Home")
+                                                        @Html.ActionLink(((Models.EF.User)Session[OnlineShop.Common.CommonConstants.ADMIN_SESSION]).Name.ToString(), "Account", "Home", new { username = ((Models.EF.User)Session[OnlineShop.Common.CommonConstants.ADMIN_SESSION]).Username.ToString() },null)
                                                     </h5>
-                                                    <span class="email"> @(((Models.EF.User)Session["Admin"]).Email) </span>
+                                                    <span class="email"> @(((Models.EF.User)Session[OnlineShop.Common.CommonConstants.ADMIN_SESSION]).Email) </span>
                                                 </div>
                                             </div>
               
                                             <div class="account-dropdown__footer">
-                                                @Html.ActionLink("Account", "Account", "Home")
+                                                @Html.ActionLink("Account", "Account", "Home", new { username = ((Models.EF.User)Session[OnlineShop.Common.CommonConstants.ADMIN_SESSION]).Username.ToString() }, null)
                                             </div>
                                             <div class="account-dropdown__footer">
                                                 @Html.ActionLink("Đăng xuất", "Index", "Login")

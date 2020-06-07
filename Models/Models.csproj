@@ -63,12 +63,9 @@
     <Compile Include="DAO\DBContext.cs" />
     <Compile Include="DAO\HomeDAO.cs" />
     <Compile Include="DAO\OrderDAO.cs" />
-    <Compile Include="DAO\OrderInfoDAO.cs" />
     <Compile Include="DAO\ProductDAO.cs" />
-    <Compile Include="DAO\RecentActivityDAO.cs" />
+    <Compile Include="DAO\ReviewDAO.cs" />
     <Compile Include="DAO\UserDAO.cs" />
-    <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
-    <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="EF\OnlineShopDbContext.cs" />
     <Compile Include="EF\Order.cs" />
     <Compile Include="EF\OrderDetail.cs" />
@@ -76,10 +73,11 @@
     <Compile Include="EF\ProductCategory.cs" />
     <Compile Include="EF\Review.cs" />
     <Compile Include="EF\User.cs" />
+    <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\OrderViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
-    <Compile Include="ViewModel\RecentActivityViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

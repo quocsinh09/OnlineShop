@@ -30,7 +30,7 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td data-toggle="modal" data-target="#@item.ProductCode">@item.ID.ToString().Substring(0,8)</td>
+                            <td>@Html.ActionLink(item.ID.ToString().Substring(0, 10), "Detail", null, new {orderid = item.ID }, new { @class = "text-secondary" })</td>
                             <td data-toggle="modal" data-target="#@item.ID"> @item.Name</td>
                             <td> @item.OrderDate </td>
                             <td>@item.ShippedDate</td>
@@ -38,98 +38,6 @@
                             <td class="process">@item.Status</td>
                             <td>@item.CostBy</td>
                         </tr> 
-                        <!--Modal product-->
-                        <div class="modal fade" id="@item.ProductCode" data-keyboard="false">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="card-title">Thông tin sản phẩm</h4>
-                                        <button type="button" class="close" data-dismiss="modal">×</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="card">
-
-                                                    <div class="card-body">
-                                                        <form>
-                                                            <div class="row">
-                                                                <div class="col-md-5 pr-1">
-                                                                    <div class="form-group">
-                                                                        <label>Tên sản phẩm</label>
-                                                                        <input type="text" class="form-control" disabled="" placeholder="Tên sản phẩm" value="@item.ProductName" readonly>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-3 px-1">
-                                                                    <div class="form-group">
-                                                                        <label>Mã sản phẩm</label>
-                                                                        <input type="number" class="form-control" placeholder="Mã sản phẩm" value="@item.ProductCode" readonly>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4 pl-1">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1">Mã sản phẩm</label>
-                                                                        <input type="number" class="form-control" placeholder="Mã sản phẩm" value="@item.ProductCode" readonly>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-6 pr-1">
-                                                                    <div class="form-group">
-                                                                        <label>Số lượng</label>
-                                                                        <input type="number" class="form-control" placeholder="Số lượng" value="@item.Amount" readonly>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6 pl-1">
-                                                                    <div class="form-group">
-                                                                        <label>Đơn giá(VNĐ/Cái)</label>
-                                                                        <input type="number" class="form-control" placeholder="Giá" value="@item.Price" readonly>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label>Thành tiền</label>
-                                                                        <input type="number" class="form-control" placeholder="Thành tiền" value="@(item.Amount*item.Price)" readonly>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-4 pr-1">
-                                                                    <div class="form-group">
-                                                                        <label>Ngày đăng ký</label>
-                                                                        <input type="text" class="form-control" placeholder="Ngày đăng ký" value="@item.CreatedDate" readonly>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4 px-1">
-                                                                    <div class="form-group">
-                                                                        <label>Ngày xác nhận</label>
-                                                                        <input type="text" class="form-control" placeholder="Ngày xác nhận" value="@item.ModifiedDate" readonly>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4 pl-1">
-                                                                    <div class="form-group">
-                                                                        <label>Chưa thanh toán</label>
-                                                                        <input type="number" class="form-control" placeholder="Chưa thanh toán" value="@item.AmountMissOrder" readonly>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </form>
-                                                    </div>
-
-                                                </div>
-                                                <button type="submit" class="btn text-success btn-info btn-fill center col-lg-12 ">
-                                                    @Html.ActionLink("Thông tin chi tiết", "Edit", "Product", new { id = item.ProductCode }, new { @class = "text-white w-100" })
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Ket thuc modal-->
 
                         <!--Modal Customer-->
                         <div class="modal fade" id="@item.ID" data-keyboard="false">
@@ -213,7 +121,7 @@
                                                     </div>
 
                                                     <button type="submit" class="btn btn-info btn-fill pull-right">
-                                                        @Html.ActionLink("Thông tin chi tiết", "MemberAccount", "User", new { id = item.username.ToString() }, new { @class = "text-white w-100" })
+                                                        @Html.ActionLink("Thông tin chi tiết", "MemberAccount", null, new { username = item.username.ToString() }, new { @class = "text-white w-100" })
                                                     </button>
                                                 </div>
                                             </div>

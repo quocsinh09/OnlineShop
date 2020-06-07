@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 <h2 class="col-lg-12" style="font-family:Arial, Helvetica, sans-serif;">Chỉnh sửa sản phẩm</h2>
-@using (Html.BeginForm("Edit", "Product", FormMethod.Post))
+@using (Html.BeginForm("Edit",null, FormMethod.Post))
 {
     <input type="hidden" name="productCode" value="@Model.ProductCode"/>
     @Html.AntiForgeryToken()

@@ -9,6 +9,7 @@ namespace OnlineShop.Common
     {
         public static string ADMIN_SESSION = "ADMIN";
         public static string USER_SESSION = "USER";
+        public static string MEMBER_SESSION = "MEMBER";
         public static string CHECK_SESSION = "CHECK";
         public static string CurrentCulture { set; get; }
     }   
