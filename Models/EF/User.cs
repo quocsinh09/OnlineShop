@@ -1,4 +1,4 @@
-namespace Models.EF
+﻿namespace Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -11,22 +11,22 @@ namespace Models.EF
     {
         public Guid ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vui lòng điền tên đăng nhập")]
         [StringLength(20)]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vui lòng điền mật khẩu")]
         [StringLength(50)]
         public string Password { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vui lòng điền tên chủ tài khoản")]
         [StringLength(50)]
         public string Name { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? BirthDay { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vui lòng điền email")]
         [StringLength(50)]
         public string Email { get; set; }
 
@@ -54,6 +54,7 @@ namespace Models.EF
 
         public bool Status { get; set; }
 
+        [Required(ErrorMessage = "vui lòng không để trống mục này")]
         public int TypeOfAccount { get; set; }
 
         public int? AmountMissOrder { get; set; }

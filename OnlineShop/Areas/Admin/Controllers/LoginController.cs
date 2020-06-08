@@ -9,6 +9,8 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Mail;
+using System.Net;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
@@ -65,9 +67,8 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             return View("ForgotPassword");
         }
-        
-        [HttpPost]
 
+        [HttpPost]
         public ActionResult ForgotPassword(ForgotPasswordModel entity)
         {
             var user = new UserDAO().GetByMail(entity.Email);
@@ -84,5 +85,6 @@ namespace OnlineShop.Areas.Admin.Controllers
             new MailHelper().SendMail(toEmail, "Đơn hàng mới từ OnlineShop", content);
             return View("Index");
         }  
+       
     }
 }

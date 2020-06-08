@@ -63,3 +63,32 @@ var delete_user = {
 }
 delete_user.init()
 
+
+function checkEmail() { 
+    var email = document.getElementById('email'); 
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+    if (!filter.test(email.value)) { 
+        alert('Hay nhap dia chi email hop le.\nExample@gmail.com');
+        email.focus; 
+        return false; 
+    }
+    else{ 
+        alert('OK roi day, Email nay hop le.'); 
+    } 
+} 
+
+(function () {
+    'use strict';
+    window.addEventListener('load', function () {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();

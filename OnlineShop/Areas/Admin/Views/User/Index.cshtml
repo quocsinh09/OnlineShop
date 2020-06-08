@@ -10,6 +10,13 @@
 
 <div class="content">
     <div class="container-fluid">
+        <div class="table-data__tool">
+            <div class="table-data__tool-right">
+                <button class="au-btn au-btn-icon au-btn--green au-btn--small pull-left">
+                    <i class="zmdi zmdi-plus"></i>@Html.ActionLink("Tạo tài khoản", "Create", null, new { @class = "text-white " })
+                </button>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-12">
                 <!-- thoong tin tai khoan-->
@@ -75,6 +82,3 @@
         </div>
     </div>
 </div>
-<button type="button" class="btn btn-info btn-fill pull-left m-l-10">
-    @Html.ActionLink("Tạo tài khoản", "Create", null, new { style = "color: white" })
-</button>
