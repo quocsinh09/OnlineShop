@@ -80,16 +80,6 @@ namespace OnlineShop.Areas.Admin.Controllers
             });
         }
 
-        //[HttpPost]
-        //public JsonResult ChangeRegency(string username, int regency)
-        //{
-        //    var dao = new UserDAO().ChangeRegency(username, regency);
-        //    return Json(new
-        //    {
-        //        status = dao
-        //    });
-        //}
-
         public ActionResult Edit(Guid id)
         {
             return View(new UserDAO().ViewDetail(id));

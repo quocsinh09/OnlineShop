@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
-                                            @Html.TextBoxFor(model => model.Password, new { @class = "au-input au-input--full ", @placeholder = "Mật khẩu", @type = "password" })
+                                            @Html.TextBoxFor(model => model.Password, new { @class = "au-input au-input--full ", @placeholder = "Mật khẩu", @type = "password" ,  @onfocus="this.value=''"})
                                             <span class="pull-right m-b-15">
                                                 <input type="checkbox" id="pass" onclick="if(Password.type=='text')Password.type='password'; else Password.type='text';" />
                                                 Hiện mật khẩu

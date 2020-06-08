@@ -31,7 +31,7 @@ namespace Models.DAO
         }
         public int numberOfMember()
         {
-            return dbContext.Users.Where(x => x.TypeOfAccount == 1).Count();
+            return dbContext.Users.Where(x => x.TypeOfAccount == 0).Count();
         }
         public string totalEarning()
         {

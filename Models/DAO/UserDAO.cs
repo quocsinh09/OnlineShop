@@ -44,7 +44,7 @@ namespace Models.DAO
             else
             {
                 // Check quyền
-                if (result.TypeOfAccount != 1)
+                if (result.TypeOfAccount != 0)
                 {
                     // Check trạng thái có bị khóa không ?
                     if (result.Status == false)
@@ -72,7 +72,7 @@ namespace Models.DAO
         // Lấy ra các tài khoản admin
         public IEnumerable<User> admins(int page, int pageSize)
         {
-            return dbContext.Users.OrderByDescending(x => x.TypeOfAccount).ToPagedList(page, pageSize);//.Where(x => x.TypeOfAccount == 0)
+            return dbContext.Users.Where(x => x.TypeOfAccount > 0).OrderByDescending(x => x.TypeOfAccount).ToPagedList(page, pageSize);//
         }
 
         // Lấy ra danh sách các tài khoản Member
@@ -227,7 +227,7 @@ namespace Models.DAO
                 else
                 {
                     var userPhone = dbContext.Users.FirstOrDefault(x => x.Mobile == entity.Mobile);
-                    if (userPhone != null && userPhone.ID.ToString() != "")
+                    if (entity.Mobile != null && (userPhone != null && userPhone.ID.ToString() != ""))
                     {
                         return -3;
                     }

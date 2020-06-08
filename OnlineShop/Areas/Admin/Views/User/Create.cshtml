@@ -20,7 +20,7 @@
                 <label class="col-md-12 col-form-label">Tên đăng nhập</label>
                 <div class="col">
                     <div class="input-group">
-                        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @placehold = "Tên đăng nhập" })
+                        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @placeholder = "Tên đăng nhập" })
                         @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -75,18 +75,10 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-md-12 col-form-label">Modify</label>
+                <label class="col-md-12 col-form-label">Chức vụ</label>
                 <div class="input-group col">
-                    @Html.TextBoxFor(model => model.ModifiedBy, new { @class = "form-control", @type = "text" })
-                    @Html.ValidationMessageFor(model => model.ModifiedBy, "", new { @class = "text-danger" })
-                </div>
-            </div>
-          
-            <div class="form-group row">
-                <label class="col-md-12 col-form-label">Địa chỉ</label>
-                <div class="input-group col">
-                    @Html.TextBoxFor(model => model.TypeOfAccount, new { @class = "form-control", @type = "text" })
-                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.TypeOfAccount, new { @class = "form-control", @type = "text" , @placeholder = "Admin [2] / Nhân viên [1]", @value = "1"})
+                    @Html.ValidationMessageFor(model => model.TypeOfAccount, "", new { @class = "text-danger" })
                 </div>
             </div>
             @Html.EditorFor(model => model.CreatedBy,((Models.EF.User)Session["Admin"]).Name.ToString())
